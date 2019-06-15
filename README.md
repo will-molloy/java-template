@@ -12,6 +12,8 @@ template repository for Java using Gradle build tool, Travis CI, Codecov and mor
 * Just go to: https://github.com/wilmol/java-gradle-template/generate
     * This will prompt you to create a new repository with all the files setup
 * Rename the root project (currently `java-gradle-template`) and group (currently `com.wilmol`) to your liking 
+* Create your README
+* Delete anything you won't use (sub projects, dependencies etc.)
 
 ## Features
 * Java 11
@@ -22,7 +24,7 @@ template repository for Java using Gradle build tool, Travis CI, Codecov and mor
 * [Spotless](https://github.com/diffplug/spotless) integration
 
 ## WIP/Future
-* [ErrorProne](https://errorprone.info/) integration
+* [Error Prone](https://errorprone.info/) integration
   * Currently has issues with Gradle
 
 ## Build
