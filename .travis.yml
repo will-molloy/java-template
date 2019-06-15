@@ -1,0 +1,14 @@
+language: java
+sudo: false # faster builds
+
+jdk:
+  - oraclejdk11
+
+before_install:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew projects clean build jacocoTestReport --no-daemon --refresh-dependencies
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

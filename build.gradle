@@ -1,0 +1,68 @@
+allprojects {
+    group 'com.wilmol'
+    version = '1.0.0'
+}
+
+buildscript {
+    repositories {
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.22.0'
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.diffplug.gradle.spotless'
+    apply plugin: 'jacoco'
+
+    sourceCompatibility = 11.0
+    targetCompatibility = 11.0
+
+    spotless {
+        java {
+            removeUnusedImports()
+            importOrderFile rootProject.file('gradle/spotless/import-order')
+            eclipse().configFile rootProject.file('gradle/spotless/code-formatting.xml')
+        }
+    }
+
+    test {
+        maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+        useJUnitPlatform()
+        testLogging {
+            exceptionFormat 'full'
+            events 'failed'
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled true
+            csv.enabled true
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile group: 'com.google.guava', name: 'guava', version: '27.1-jre'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+        compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
+
+        implementation 'com.google.code.gson:gson:2.8.5'
+
+        testCompile group: 'com.google.truth', name: 'truth', version: '0.45'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0-M1'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.0-M1'
+
+        testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.4.0'
+    }
+}
