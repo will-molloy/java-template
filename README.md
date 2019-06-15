@@ -1,13 +1,27 @@
+[![Build Status](https://travis-ci.com/wilmol/java-gradle-template.svg?branch=master)](https://travis-ci.com/wilmol/java-gradle-template)
+[![codecov](https://codecov.io/gh/wilmol/java-gradle-template/branch/master/graph/badge.svg)](https://codecov.io/gh/wilmol/java-gradle-template)
+
 # java-gradle-template
 template repository for Java using Gradle build tool, Travis CI, Codecov and more
 
 ## Usage
+* Just go to: https://github.com/wilmol/java-gradle-template/generate
+    * This will prompt you to create a new repository with all the files setup
+* Rename the root project (currently 'java-gradle-template') and group (currently 'com.wilmol') to your liking 
 
-### Install
+## Features
+* Java 11
+* Gradle 5+
+  * Multi-project builds
+* [Travis CI](https://travis-ci.com/) integration
+* [Codecov](https://codecov.io/) integration
+* [Spotless](https://github.com/diffplug/spotless) integration
 
-### Configure
+## WIP/Future
+* [ErrorProne](https://errorprone.info/) integration
+  * Currently has issues with Gradle
 
-### Build
+## Build
 ```
 ./gradlew spotlessApply clean build
 ```
