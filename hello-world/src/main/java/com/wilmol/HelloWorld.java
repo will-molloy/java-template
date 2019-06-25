@@ -1,14 +1,13 @@
 package com.wilmol;
 
 /**
+ * Example main src.
+ *
  * @author wilmol
  */
-class HelloWorld
-{
+public class HelloWorld {
 
-  public String helloWorld()
-  {
+  public String helloWorld() {
     return "Hello world!";
   }
-
 }

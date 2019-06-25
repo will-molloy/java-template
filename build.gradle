@@ -1,8 +1,3 @@
-allprojects {
-    group 'com.wilmol'
-    version = '1.0.0'
-}
-
 buildscript {
     repositories {
         maven {
@@ -11,25 +6,61 @@ buildscript {
     }
     dependencies {
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.22.0'
+        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.8'
+    }
+}
+
+allprojects {
+    group 'com.wilmol'
+    version = '1.0.0'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
     }
 }
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'com.diffplug.gradle.spotless'
-    apply plugin: 'jacoco'
-
     sourceCompatibility = 11.0
     targetCompatibility = 11.0
 
+    // Spotless (code formatting)
+    apply plugin: 'com.diffplug.gradle.spotless'
     spotless {
         java {
             removeUnusedImports()
-            importOrderFile rootProject.file('gradle/spotless/import-order')
-            eclipse().configFile rootProject.file('gradle/spotless/code-formatting.xml')
+            googleJavaFormat()
         }
     }
 
+    // Checkstyle (static analysis - code quality/style)
+    apply plugin: 'checkstyle'
+    checkstyle {
+        toolVersion = '8.21'
+        configFile = rootProject.file('gradle/checkstyle/google_checks.xml')
+        maxErrors = 0
+        maxWarnings = 0
+        ignoreFailures = false
+    }
+
+    // SpotBugs (static analysis - find possible bugs, performance issues etc.)
+    apply plugin: 'com.github.spotbugs'
+    spotbugs {
+        toolVersion = '3.1.12'
+        effort = 'max'
+        reportLevel = 'low'
+        ignoreFailures = false
+    }
+    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+        reports {
+            html.enabled = true
+            xml.enabled = false
+        }
+    }
+
+    // Tests
     test {
         maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
         useJUnitPlatform()
@@ -39,16 +70,14 @@ subprojects {
         }
     }
 
+    // JaCoCo (code coverage reporting)
+    apply plugin: 'jacoco'
     jacocoTestReport {
         reports {
-            xml.enabled true
-            html.enabled true
-            csv.enabled true
+            html.enabled = true
+            xml.enabled = false
+            csv.enabled = false
         }
-    }
-
-    repositories {
-        mavenCentral()
     }
 
     dependencies {
@@ -56,9 +85,9 @@ subprojects {
         implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
         implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
         implementation group: 'org.javatuples', name: 'javatuples', version: '1.2'
-        implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
 
         testImplementation group: 'com.google.truth', name: 'truth', version: '0.45'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.0-RC1'
         testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0-RC1'
     }
 }

@@ -5,15 +5,14 @@ import static com.google.common.truth.Truth.assertThat;
 import org.junit.Test;
 
 /**
+ * Example test src.
+ *
  * @author wilmol
  */
-public class HelloWorldTest
-{
+public class HelloWorldTest {
 
   @Test
-  public void test()
-  {
+  public void test() {
     assertThat(new HelloWorld().helloWorld()).isEqualTo("Hello world!");
   }
-
 }
