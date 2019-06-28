@@ -1,5 +1,3 @@
-sudo: false # faster builds
-
 language: java
 
 before_install:

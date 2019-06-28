@@ -15,9 +15,7 @@ allprojects {
     version = '1.0.0'
 
     repositories {
-        mavenLocal()
         mavenCentral()
-        jcenter()
     }
 }
 
@@ -74,8 +72,8 @@ subprojects {
     apply plugin: 'jacoco'
     jacocoTestReport {
         reports {
-            html.enabled = true
-            xml.enabled = false
+            xml.enabled = true
+            html.enabled = false
             csv.enabled = false
         }
     }
