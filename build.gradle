@@ -73,10 +73,11 @@ subprojects {
     jacocoTestReport {
         reports {
             xml.enabled = true
-            html.enabled = false
+            html.enabled = true
             csv.enabled = false
         }
     }
+    check.dependsOn jacocoTestReport
 
     dependencies {
         implementation group: 'com.google.guava', name: 'guava', version: '28.0-jre'
