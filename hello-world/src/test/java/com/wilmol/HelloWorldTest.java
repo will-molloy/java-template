@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Example test src.
  *
- * @author wilmol
+ * <p>Created by wilmol on 2019-06-15.
  */
 class HelloWorldTest {
 

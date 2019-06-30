@@ -3,7 +3,7 @@ package com.wilmol;
 /**
  * Example main src.
  *
- * @author wilmol
+ * <p>Created by wilmol on 2019-06-15.
  */
 public class HelloWorld {
 
