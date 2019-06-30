@@ -4,6 +4,10 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <!--
+    Based on google_checks.xml, but has a few tweaks at the bottom.
+
+    Note some checks are redundant since spotless is also used in the project.
+
     Checkstyle configuration that checks the Google coding conventions from Google Java Style
     that can be found at https://google.github.io/styleguide/javaguide.html
 
@@ -11,8 +15,6 @@
     http://checkstyle.sf.net (or in your downloaded distribution).
 
     To completely disable a check, just comment it out or delete it from the file.
-
-    Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 
 <module name = "Checker">
@@ -51,7 +53,6 @@
             <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
         <module name="AvoidStarImport"/>
-        <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
         <module name="EmptyBlock">
             <property name="option" value="TEXT"/>
@@ -70,7 +71,7 @@
             <property name="id" value="RightCurlyAlone"/>
             <property name="option" value="alone"/>
             <property name="tokens"
-                      value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
+                      value="CLASS_DEF, METHOD_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
                     INSTANCE_INIT"/>
         </module>
         <module name="WhitespaceAround">
@@ -131,28 +132,28 @@
                      value="Type name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="MemberName">
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Member name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="ParameterName">
-            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="LambdaParameterName">
-            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Lambda parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="CatchParameterName">
-            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Catch parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="LocalVariableName">
             <property name="tokens" value="VARIABLE_DEF"/>
-            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Local variable name ''{0}'' must match pattern ''{1}''."/>
         </module>
@@ -181,14 +182,6 @@
                      value="GenericWhitespace ''{0}'' should followed by whitespace."/>
             <message key="ws.notPreceded"
                      value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
-        </module>
-        <module name="Indentation">
-            <property name="basicOffset" value="2"/>
-            <property name="braceAdjustment" value="0"/>
-            <property name="caseIndent" value="2"/>
-            <property name="throwsIndent" value="4"/>
-            <property name="lineWrappingIndentation" value="4"/>
-            <property name="arrayInitIndent" value="2"/>
         </module>
         <module name="AbbreviationAsWordInName">
             <property name="ignoreFinal" value="false"/>
@@ -250,16 +243,80 @@
             <property name="allowedAnnotations" value="Override, Test"/>
         </module>
         <module name="MethodName">
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                      value="Method name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="SingleLineJavadoc">
-            <property name="ignoreInlineTags" value="false"/>
+            <property name="ignoreInlineTags" value="true"/>
         </module>
         <module name="EmptyCatchBlock">
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="CommentsIndentation"/>
+
+        <!-- wilmol edits below: -->
+
+        <module name="OneTopLevelClass"/>
+        <module name="FinalClass"/>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
+        <module name="RedundantModifier"/>
+        <module name="MissingDeprecated"/>
+        <module name="InnerAssignment"/>
+        <module name="ConstantName"/>
+        <module name="EqualsHashCode"/>
+        <module name="ExplicitInitialization"/>
+        <module name="AvoidNestedBlocks"/>
+        <module name="StaticVariableName"/>
+
+        <!-- Ensure only JUnit 5 is used -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="org\.junit\.(?!jupiter)"/>
+            <property name="message" value="Only JUnit 5 can be used."/>
+        </module>
+
+        <!-- Ensure only Google Truth is used TODO add others e.g. assertEquals ???? -->
+        <module name="RegexpSinglelineJava">
+            <!-- use '&lt;' for '<' since this is an xml file... -->
+            <property name="format" value="import.*(?&lt;!static com\.google\.common\.truth\.Truth\.)assertThat"/>
+            <property name="message" value="Only Google Truth assertions can be used."/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="^(?!.*import).*?Truth.*"/>
+            <property name="message" value="Test assertions should use static imports."/>
+        </module>
+
+        <!-- Ensure links in Javadocs are tagged correctly -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="^.*\*(?!.*href=).*?http.*$"/>
+            <property name="message" value="Link in Javadoc must be tagged '&lt;a href=...'."/>
+        </module>
+
+        <!-- Ensure file author is present -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="^.*\*.*Created by .+ on .+"/>
+            <property name="minimum" value="1"/>
+            <property name="maximum" value="1"/>
+            <property name="message" value="Must include author 'Created by ...'."/>
+        </module>
+
+        <!-- Indentation is covered by spotless -->
+        <!--                <module name="Indentation">-->
+        <!--                    <property name="basicOffset" value="2"/>-->
+        <!--                    <property name="braceAdjustment" value="0"/>-->
+        <!--                    <property name="caseIndent" value="2"/>-->
+        <!--                    <property name="throwsIndent" value="4"/>-->
+        <!--                    <property name="lineWrappingIndentation" value="4"/>-->
+        <!--                    <property name="arrayInitIndent" value="2"/>-->
+        <!--                </module>-->
+
+        <!-- For explicitly disabling checks -->
+        <module name="SuppressWithNearbyCommentFilter">
+            <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
+            <property name="checkFormat" value="$1"/>
+            <property name="influenceFormat" value="$2"/>
+        </module>
     </module>
 </module>
