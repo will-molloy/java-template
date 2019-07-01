@@ -37,7 +37,7 @@ subprojects {
     apply plugin: 'checkstyle'
     checkstyle {
         toolVersion = '8.21'
-        configFile = rootProject.file('gradle/checkstyle/google_checks.xml')
+        configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
         maxErrors = 0
         maxWarnings = 0
         ignoreFailures = false

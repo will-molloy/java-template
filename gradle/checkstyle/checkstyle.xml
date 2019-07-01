@@ -302,6 +302,14 @@
             <property name="message" value="Must include author 'Created by ...'."/>
         </module>
 
+        <!-- Ensure no printing to console TODO improve the regex ???? -->
+        <module name="Regexp">
+            <property name="format" value="((System\.(out|err))|printStackTrace|(out|err)\.(print|write|append))"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="No printing to console, use a logger."/>
+        </module>
+
         <!-- Indentation is covered by spotless -->
         <!--                <module name="Indentation">-->
         <!--                    <property name="basicOffset" value="2"/>-->

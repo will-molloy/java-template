@@ -29,7 +29,7 @@ template repository for Java projects using Gradle
 * [Spotless](https://github.com/diffplug/spotless) integration 
   * With [google-java-format](https://github.com/google/google-java-format)
 * [Checkstyle](https://github.com/checkstyle/checkstyle) integration 
-  * With [google checks](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
+  * With [google_checks](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
 * [SpotBugs](https://spotbugs.github.io/) integration
 
 ## WIP/Future
