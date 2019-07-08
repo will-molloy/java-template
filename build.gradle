@@ -83,6 +83,7 @@ subprojects {
         implementation group: 'com.google.guava', name: 'guava', version: '28.0-jre'
         implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
         implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+        implementation group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.1'
         implementation group: 'org.javatuples', name: 'javatuples', version: '1.2'
 
         testImplementation group: 'com.google.truth', name: 'truth', version: '0.45'
