@@ -293,7 +293,7 @@
         <!-- Ensure only Google Truth is used -->
         <module name="RegexpSinglelineJava">
             <!-- use '&lt;' for '<' since this is an xml file... -->
-            <property name="format" value="import.*(?&lt;!static com\.google\.common\.truth\.Truth\.)assert(?!Throws)"/>
+            <property name="format" value="import.*(?&lt;!static com\.google\.common\.truth\.Truth8?\.)assert(?!Throws)"/>
             <property name="ignoreComments" value="true"/>
             <property name="message"
                       value="Only Google Truth assertions can be used (other than JUnit 5 assertThrows)."/>
