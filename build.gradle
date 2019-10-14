@@ -1,3 +1,5 @@
+import com.github.spotbugs.SpotBugsTask
+
 buildscript {
     repositories {
         maven {
@@ -51,7 +53,7 @@ subprojects {
         reportLevel = 'low'
         ignoreFailures = false
     }
-    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    tasks.withType(SpotBugsTask) {
         reports {
             html.enabled = true
             xml.enabled = false
@@ -60,6 +62,7 @@ subprojects {
 
     // Tests
     test {
+        // run tests in parallel, assumes they're threadsafe
         maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
         useJUnitPlatform()
         testLogging {
@@ -79,15 +82,34 @@ subprojects {
     }
     check.dependsOn jacocoTestReport
 
-    dependencies {
-        implementation group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.1'
-        implementation group: 'com.google.guava', name: 'guava', version: '28.0-jre'
-        implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-        implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
+    // dependency version numbers
+    ext {
+        junitVersion = '5.5.2'
+        truthVersion = '1.0'
+        mockitoVersion = '3.1.0'
 
-        testImplementation group: 'com.google.truth', name: 'truth', version: '0.45'
-        testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.0.0'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.0-RC1'
-        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0-RC1'
+        guavaVersion = '28.1-jre'
+        log4jVersion = '2.12.1'
+    }
+    
+    // dependency cleanup, exclusions and resolutions
+    configurations.all {
+        exclude group: "org.assertj" // using truth instead
+
+        resolutionStrategy {
+            force "com.google.guava:guava:$guavaVersion" // so the android version isn't pulled in
+        }
+    }
+
+    dependencies {
+        implementation "com.google.guava:guava:$guavaVersion"
+        implementation "org.apache.logging.log4j:log4j-core:$log4jVersion"
+        implementation 'com.google.code.findbugs:annotations:3.0.1'
+
+        testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        testImplementation "com.google.truth:truth:$truthVersion"
+        testImplementation "com.google.truth.extensions:truth-java8-extension:$truthVersion"
+        testImplementation "org.mockito:mockito-core:$mockitoVersion"
     }
 }
