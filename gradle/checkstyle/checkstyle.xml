@@ -348,6 +348,35 @@
                       value="No usage of legacy HashTable class, use HashMap or ConcurrentHashMap instead."/>
         </module>
 
+        <!-- Multimap/Table --->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\bMap<\S+?, Set<\S+?>>"/>
+            <property name="message" value="Replace use of Map<K, Set<V>> with SetMultimap<K, V>."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\bMap<\S+?, List<\S+?>>"/>
+            <property name="message" value="Replace use of Map<K, List<V>> with ListMultimap<K, V>."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\bMap<\S+?, Map<\S+?, \S+?>>"/>
+            <property name="message" value="Replace use of Map<K1, Map<K2, V>> with Table<K1, K2, V>."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+
+        <!-- .empty() -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="(\.(size|length)\(\) == 0|== &quot;&quot;)"/>
+            <property name="message" value="Use isEmpty() or similar."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="(\.(size|length)\(\) (!=|>) 0|!= &quot;&quot;)"/>
+            <property name="message" value="Use nonEmpty() or similar."/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+
         <!-- For explicitly disabling checks TODO use suppression filter instead ???? -->
         <module name="SuppressWithNearbyCommentFilter">
             <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
