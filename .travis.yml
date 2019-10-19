@@ -9,6 +9,7 @@ before_install:
   - java -version
 
 script:
+  - ls -laRh
   - ./gradlew projects clean build jacocoTestReport --no-daemon --refresh-dependencies
 
 after_success:
