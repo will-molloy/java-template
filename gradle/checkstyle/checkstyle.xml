@@ -286,22 +286,23 @@
         <!-- Regexp for test files (note assumes checkstyle runs on test files!) -->
         <!-- Ensure only JUnit 5 is used -->
         <module name="RegexpSinglelineJava">
-            <property name="format" value="org\.junit\.(?!jupiter)"/>
+            <property name="format" value="(org\.junit\.(?!jupiter)|junit\.framework)"/>
             <property name="ignoreComments" value="true"/>
-            <property name="message" value="Only JUnit 5 runners can be used."/>
+            <property name="message" value="Use JUnit 5."/>
         </module>
-        <!-- Ensure only Google Truth is used -->
+        <!-- Ensure only Google Truth is used. Exception made for JUnit 5 assertThrows, assertAll, and fail.
+        TODO remove assertThrows exclusion when Truth supports it
+        -->
         <module name="RegexpSinglelineJava">
-            <!-- use '&lt;' for '<' since this is an xml file... -->
-            <property name="format" value="import.*(?&lt;!static com\.google\.common\.truth\.Truth8?\.)assert(?!Throws)"/>
+            <property name="format"
+                      value="import.*(?&lt;!com\.google\.common\.truth\.Truth8?\.)(A|a)ssert(?!.*(Throws|All|fail))"/>
             <property name="ignoreComments" value="true"/>
-            <property name="message"
-                      value="Only Google Truth assertions can be used (other than JUnit 5 assertThrows)."/>
+            <property name="message" value="Use com.google.truth.Truth assertions."/>
         </module>
         <module name="RegexpSinglelineJava">
-            <property name="format" value="^(?!.*import).*?Truth.*"/>
+            <property name="format" value="(?&lt;!import static.*)(Truth|Assertions|Mockito|ArgumentMatchers)"/>
             <property name="ignoreComments" value="true"/>
-            <property name="message" value="Test assertions should use static imports."/>
+            <property name="message" value="Use a static import."/>
         </module>
 
         <!-- Regexp for JavaDoc -->
@@ -310,7 +311,9 @@
             <property name="format" value="^.*\*(?!.*href=).*?http.*$"/>
             <property name="message" value="Link in Javadoc must be tagged '&lt;a href=...'."/>
         </module>
-        <!-- Ensure class author is present TODO use @author instead? there is actually a specific checkstyle for this (one of the Javadoc ones) -->
+        <!-- Ensure class author is present
+        TODO use @author instead? there is actually a specific checkstyle for this (one of the Javadoc ones)
+        -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="^.*\*.*Created by .+ on .+"/>
             <property name="minimum" value="1"/>
@@ -319,13 +322,17 @@
         </module>
 
         <!-- General Regexp -->
-        <!-- Ensure no printing to console TODO there is an IDEA inspection for this -->
+        <!-- Ensure no printing to console
+        TODO there is an IDEA inspection for this
+        -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="((System\.(out|err))|printStackTrace|(out|err)\.(print|write|append))"/>
             <property name="ignoreComments" value="true"/>
             <property name="message" value="No printing to console, use more robust logging."/>
         </module>
-        <!-- "legacy" core APIs that no one who values their livelihood should ever use TODO there is an IDEA inspection for this -->
+        <!-- "legacy" core APIs that no one who values their livelihood should ever use
+        TODO there is an IDEA inspection for this
+        -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="import java[.]util[.]Stack"/>
             <property name="ignoreComments" value="true"/>
@@ -334,21 +341,23 @@
         <module name="RegexpSinglelineJava">
             <property name="format" value="import java[.]util[.]Vector"/>
             <property name="ignoreComments" value="true"/>
-            <property name="message" value="No usage of legacy Vector class, use ArrayList instead."/>
+            <property name="message"
+                      value="No usage of legacy Vector class, use ArrayList or CopyOnWriteArrayList instead."/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="import java[.]util[.]Hashtable"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message"
+                      value="No usage of legacy Hashtable class, use HashMap or ConcurrentHashMap instead."/>
         </module>
         <module name="RegexpSinglelineJava">
             <property name="format" value="import java[.](util|text)[.].*(Date|Calendar)"/>
             <property name="ignoreComments" value="true"/>
             <property name="message" value="No usage of legacy date classes, use java.time instead."/>
         </module>
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="import java[.]util[.]HashTable"/>
-            <property name="ignoreComments" value="true"/>
-            <property name="message"
-                      value="No usage of legacy HashTable class, use HashMap or ConcurrentHashMap instead."/>
-        </module>
 
-        <!-- For explicitly disabling checks TODO use suppression filter instead ???? -->
+        <!-- For explicitly disabling checks
+        TODO use suppression filter instead ???? -->
         <module name="SuppressWithNearbyCommentFilter">
             <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
             <property name="checkFormat" value="$1"/>

@@ -15,7 +15,6 @@ buildscript {
 allprojects {
     group 'com.wilmol'
     version = '1.0.0'
-
     repositories {
         mavenCentral()
     }
@@ -26,7 +25,7 @@ subprojects {
     sourceCompatibility = 11.0
     targetCompatibility = 11.0
 
-    // Spotless (code formatting)
+    // Spotless (code formatting/linting)
     apply plugin: 'com.diffplug.gradle.spotless'
     spotless {
         java {
@@ -84,7 +83,7 @@ subprojects {
     }
     check.dependsOn jacocoTestReport
 
-    // dependency version numbers
+    // pin dependency versions
     ext {
         junitVersion = '5.5.2'
         truthVersion = '1.0'
@@ -108,10 +107,10 @@ subprojects {
         implementation "org.apache.logging.log4j:log4j-core:$log4jVersion"
         implementation 'com.google.code.findbugs:annotations:3.0.1'
 
-        testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
         testImplementation "com.google.truth:truth:$truthVersion"
         testImplementation "com.google.truth.extensions:truth-java8-extension:$truthVersion"
         testImplementation "org.mockito:mockito-core:$mockitoVersion"
+        testImplementation "org.mockito:mockito-junit-jupiter:$mockitoVersion"
     }
 }
