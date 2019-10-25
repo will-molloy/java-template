@@ -286,7 +286,7 @@
         <!-- Regexp for test files (note assumes checkstyle runs on test files!) -->
         <!-- Ensure only JUnit 5 is used -->
         <module name="RegexpSinglelineJava">
-            <property name="format" value="(org\.junit\.(?!jupiter)|junit\.framework)"/>
+            <property name="format" value="junit\.(?!jupiter)"/>
             <property name="ignoreComments" value="true"/>
             <property name="message" value="Use JUnit 5."/>
         </module>
