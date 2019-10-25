@@ -65,10 +65,19 @@ subprojects {
         maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
         // use JUnit 5 engine
         useJUnitPlatform()
-        // log the full failure messages
         testLogging {
-            exceptionFormat = 'full'
             events = ['failed', 'skipped']
+            // log the full failure messages
+            exceptionFormat = 'full'
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+            // log the overall results (based on https://stackoverflow.com/a/36130467/6122976)
+            afterSuite { desc, result ->
+                if (!desc.parent) { // will match the outermost suite
+                    println("Results: ${result.resultType} (${result.testCount} test${result.testCount > 1 ? "s" : ""}, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
+                }
+            }
         }
     }
 
@@ -92,7 +101,7 @@ subprojects {
         guavaVersion = '28.1-jre'
         log4jVersion = '2.12.1'
     }
-    
+
     // dependency cleanup, exclusions and resolutions
     configurations.all {
         exclude group: "org.assertj" // using truth instead
