@@ -264,6 +264,10 @@
         <module name="ExplicitInitialization"/>
         <module name="AvoidNestedBlocks"/>
         <module name="StaticVariableName"/>
+        <module name="MissingJavadocType"/>
+        <module name="JavadocType">
+            <property name="authorFormat" value=".+"/>
+        </module>
 
         <!-- removed checks -->
         <!-- Indentation is covered by spotless -->
@@ -310,15 +314,6 @@
         <module name="RegexpSinglelineJava">
             <property name="format" value="^.*\*(?!.*href=).*?http.*$"/>
             <property name="message" value="Link in Javadoc must be tagged '&lt;a href=...'."/>
-        </module>
-        <!-- Ensure class author is present
-        TODO use @author instead? there is actually a specific checkstyle for this (one of the Javadoc ones)
-        -->
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="^.*\*.*Created by .+ on .+"/>
-            <property name="minimum" value="1"/>
-            <property name="maximum" value="1"/>
-            <property name="message" value="Must include author 'Created by ...'."/>
         </module>
 
         <!-- General Regexp -->
