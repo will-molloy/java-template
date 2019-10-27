@@ -264,7 +264,9 @@
         <module name="ExplicitInitialization"/>
         <module name="AvoidNestedBlocks"/>
         <module name="StaticVariableName"/>
-        <module name="MissingJavadocType"/>
+        <module name="MissingJavadocType">
+            <property name="scope" value="private"/>
+        </module>
         <module name="JavadocType">
             <property name="authorFormat" value=".+"/>
         </module>
