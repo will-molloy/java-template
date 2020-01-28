@@ -4,12 +4,13 @@ before_install:
   - chmod +x gradlew
   # Amazon JDK -- https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-  - source install-jdk.sh --url https://d3pxv6yz143wms.cloudfront.net/11.0.3.7.1/amazon-corretto-11.0.3.7.1-linux-x64.tar.gz
+  - source install-jdk.sh --url https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz
   - echo JAVA_HOME = ${JAVA_HOME}
   - java -version
 
 script:
   - ls -laRh
+  - printenv
   - ./gradlew projects clean build jacocoTestReport --no-daemon --refresh-dependencies
 
 after_success:
