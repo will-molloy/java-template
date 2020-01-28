@@ -7,8 +7,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.22.0'
-        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.8'
+        // TODO pin version numbers (with the others below)
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.27.1'
+        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0'
     }
 }
 
@@ -37,7 +38,8 @@ subprojects {
     // Checkstyle (static analysis - code quality/style)
     apply plugin: 'checkstyle'
     checkstyle {
-        toolVersion = '8.21'
+        // TODO pin version number (with the others below)
+        toolVersion = '8.23'
         configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
         maxErrors = 0
         maxWarnings = 0
@@ -47,6 +49,7 @@ subprojects {
     // SpotBugs (static analysis - find possible bugs, performance issues etc.)
     apply plugin: 'com.github.spotbugs'
     spotbugs {
+        // TODO pin version number (with the others below)
         toolVersion = '3.1.12'
         effort = 'max'
         reportLevel = 'low'
@@ -94,12 +97,14 @@ subprojects {
 
     // pin dependency versions
     ext {
-        junitVersion = '5.5.2'
-        truthVersion = '1.0'
-        mockitoVersion = '3.1.0'
-
-        guavaVersion = '28.1-jre'
-        log4jVersion = '2.12.1'
+        // production
+        guavaVersion = '28.2-jre'
+        log4jVersion = '2.13.0'
+        // test
+        junitVersion = '5.6.0'
+        truthVersion = '1.0.1'
+        mockitoVersion = '3.2.4'
+        // plugins TODO pin gradle plugin versions
     }
 
     // dependency cleanup, exclusions and resolutions
