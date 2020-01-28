@@ -17,12 +17,12 @@ template repository for Java projects using Gradle
 
 ### Build
 ```
-./gradlew spotlessApply clean build
+./gradlew spotlessApply build
 ```
 
 ## Features
 * Java 11
-* Gradle 5
+* Gradle 6
   * Multi-project builds
 * [Travis CI](https://travis-ci.com/) integration
 * [Codecov](https://codecov.io/) integration
@@ -32,7 +32,7 @@ template repository for Java projects using Gradle
   * With [google_checks](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
 * [SpotBugs](https://spotbugs.github.io/) integration
 
-## WIP/Future
+## Promise
 * Keep up to date with:
   * Future Java LTS versions
   * Future Gradle versions
