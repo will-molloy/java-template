@@ -39,7 +39,7 @@ subprojects {
     apply plugin: 'checkstyle'
     checkstyle {
         // TODO pin version number (with the others below)
-        toolVersion = '8.23'
+        toolVersion = '8.29'
         configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
         maxErrors = 0
         maxWarnings = 0

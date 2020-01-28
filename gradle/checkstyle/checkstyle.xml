@@ -4,8 +4,9 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <!--
-    Based on google_checks.xml, but has a few tweaks (see the bottom).
-
+    Based on google_checks.xml
+    (https://github.com/checkstyle/checkstyle/edit/master/src/main/resources/google_checks.xml), but has a few tweaks
+    (see the bottom).
     Note some checks are redundant since spotless is also used in the project.
 
     Checkstyle configuration that checks the Google coding conventions from Google Java Style
@@ -34,6 +35,11 @@
         <property name="eachLine" value="true"/>
     </module>
 
+    <module name="LineLength">
+        <property name="max" value="100"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+    </module>
+
     <module name="TreeWalker">
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
@@ -47,10 +53,6 @@
             <property name="allowEscapesForControlCharacters" value="true"/>
             <property name="allowByTailComment" value="true"/>
             <property name="allowNonPrintableEscapes" value="true"/>
-        </module>
-        <module name="LineLength">
-            <property name="max" value="100"/>
-            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
         <module name="AvoidStarImport"/>
         <module name="NoLineWrap"/>
@@ -225,15 +227,15 @@
         <module name="JavadocMethod">
             <property name="scope" value="public"/>
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
             <property name="allowedAnnotations" value="Override, Test"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
         </module>
         <module name="MissingJavadocMethod">
             <property name="scope" value="public"/>
             <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
