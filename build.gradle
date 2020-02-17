@@ -1,5 +1,8 @@
 import com.github.spotbugs.SpotBugsTask
 
+logger.quiet "Running Java version: " + System.properties['java.version']
+logger.quiet "Running Gradle version: $gradle.gradleVersion"
+
 buildscript {
     repositories {
         maven {
