@@ -1,133 +1,147 @@
 import com.github.spotbugs.SpotBugsTask
 
-logger.quiet "Running Java version: " + System.properties['java.version']
-logger.quiet "Running Gradle version: $gradle.gradleVersion"
+logger.quiet "Java version: ${System.properties['java.version']}"
+logger.quiet "Gradle version: $gradle.gradleVersion"
 
 buildscript {
-    repositories {
-        maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
+  repositories {
+    maven {
+      url 'https://plugins.gradle.org/m2/'
     }
-    dependencies {
-        // TODO pin version numbers (with the others below)
-        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.27.1'
-        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0'
+  }
+  dependencies {
+    // TODO pin version numbers (with the others below)
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.27.1'
+    classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0'
+    classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.+"
+  }
+}
+
+// Build time tracker
+apply plugin: "build-time-tracker"
+buildtimetracker {
+  reporters {
+    summary {
+      ordered false
+      threshold 50
+      barstyle "ascii"
+      shortenTaskNames false
     }
+  }
 }
 
 allprojects {
-    group 'com.wilmol'
-    version = '1.0.0'
-    repositories {
-        mavenCentral()
-    }
+  group 'com.wilmol'
+  version = '1.0.0'
+  repositories {
+    mavenCentral()
+  }
 }
 
 subprojects {
-    apply plugin: 'java'
-    sourceCompatibility = 11.0
-    targetCompatibility = 11.0
+  apply plugin: 'java'
+  sourceCompatibility = 11.0
+  targetCompatibility = 11.0
 
-    // Spotless (code formatting/linting)
-    apply plugin: 'com.diffplug.gradle.spotless'
-    spotless {
-        java {
-            removeUnusedImports()
-            googleJavaFormat()
+  // Spotless (code formatting/linting)
+  apply plugin: 'com.diffplug.gradle.spotless'
+  spotless {
+    java {
+      removeUnusedImports()
+      googleJavaFormat()
+    }
+  }
+
+  // Checkstyle (static analysis - code quality/style)
+  apply plugin: 'checkstyle'
+  checkstyle {
+    // TODO pin version number (with the others below)
+    toolVersion = '8.29'
+    configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
+    maxErrors = 0
+    maxWarnings = 0
+    ignoreFailures = false
+  }
+
+  // SpotBugs (static analysis - find possible bugs, performance issues etc.)
+  apply plugin: 'com.github.spotbugs'
+  spotbugs {
+    // TODO pin version number (with the others below)
+    toolVersion = '3.1.12'
+    effort = 'max'
+    reportLevel = 'low'
+    ignoreFailures = false
+  }
+  tasks.withType(SpotBugsTask) {
+    reports {
+      html.enabled = true
+      xml.enabled = false
+    }
+  }
+
+  // Tests
+  tasks.withType(Test) {
+    // run tests in parallel, assumes they're threadsafe
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    // use JUnit 5 engine
+    useJUnitPlatform()
+    testLogging {
+      events = ['failed', 'skipped']
+      // log the full failure messages
+      exceptionFormat = 'full'
+      showExceptions = true
+      showCauses = true
+      showStackTraces = true
+      // log the overall results (based on https://stackoverflow.com/a/36130467/6122976)
+      afterSuite { desc, result ->
+        if (!desc.parent) { // will match the outermost suite
+          println("Results: ${result.resultType} (${result.testCount} test${result.testCount > 1 ? "s" : ""}, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
         }
+      }
     }
+  }
 
-    // Checkstyle (static analysis - code quality/style)
-    apply plugin: 'checkstyle'
-    checkstyle {
-        // TODO pin version number (with the others below)
-        toolVersion = '8.29'
-        configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
-        maxErrors = 0
-        maxWarnings = 0
-        ignoreFailures = false
+  // JaCoCo (code coverage reporting)
+  apply plugin: 'jacoco'
+  jacocoTestReport {
+    reports {
+      xml.enabled = true
+      html.enabled = true
+      csv.enabled = false
     }
+  }
+  check.dependsOn jacocoTestReport
 
-    // SpotBugs (static analysis - find possible bugs, performance issues etc.)
-    apply plugin: 'com.github.spotbugs'
-    spotbugs {
-        // TODO pin version number (with the others below)
-        toolVersion = '3.1.12'
-        effort = 'max'
-        reportLevel = 'low'
-        ignoreFailures = false
+  // pin dependency versions
+  ext {
+    // production
+    guavaVersion = '28.2-jre'
+    log4jVersion = '2.13.0'
+    // test
+    junitVersion = '5.6.0'
+    truthVersion = '1.0.1'
+    mockitoVersion = '3.2.4'
+    // plugins TODO pin gradle plugin versions
+  }
+
+  // dependency cleanup, exclusions and resolutions
+  configurations.all {
+    exclude group: "org.assertj" // using truth instead
+
+    resolutionStrategy {
+      force "com.google.guava:guava:$guavaVersion" // so the android version isn't pulled in
     }
-    tasks.withType(SpotBugsTask) {
-        reports {
-            html.enabled = true
-            xml.enabled = false
-        }
-    }
+  }
 
-    // Tests
-    tasks.withType(Test) {
-        // run tests in parallel, assumes they're threadsafe
-        maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
-        // use JUnit 5 engine
-        useJUnitPlatform()
-        testLogging {
-            events = ['failed', 'skipped']
-            // log the full failure messages
-            exceptionFormat = 'full'
-            showExceptions = true
-            showCauses = true
-            showStackTraces = true
-            // log the overall results (based on https://stackoverflow.com/a/36130467/6122976)
-            afterSuite { desc, result ->
-                if (!desc.parent) { // will match the outermost suite
-                    println("Results: ${result.resultType} (${result.testCount} test${result.testCount > 1 ? "s" : ""}, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
-                }
-            }
-        }
-    }
+  dependencies {
+    implementation "com.google.guava:guava:$guavaVersion"
+    implementation "org.apache.logging.log4j:log4j-core:$log4jVersion"
+    implementation 'com.google.code.findbugs:annotations:3.0.1'
 
-    // JaCoCo (code coverage reporting)
-    apply plugin: 'jacoco'
-    jacocoTestReport {
-        reports {
-            xml.enabled = true
-            html.enabled = true
-            csv.enabled = false
-        }
-    }
-    check.dependsOn jacocoTestReport
-
-    // pin dependency versions
-    ext {
-        // production
-        guavaVersion = '28.2-jre'
-        log4jVersion = '2.13.0'
-        // test
-        junitVersion = '5.6.0'
-        truthVersion = '1.0.1'
-        mockitoVersion = '3.2.4'
-        // plugins TODO pin gradle plugin versions
-    }
-
-    // dependency cleanup, exclusions and resolutions
-    configurations.all {
-        exclude group: "org.assertj" // using truth instead
-
-        resolutionStrategy {
-            force "com.google.guava:guava:$guavaVersion" // so the android version isn't pulled in
-        }
-    }
-
-    dependencies {
-        implementation "com.google.guava:guava:$guavaVersion"
-        implementation "org.apache.logging.log4j:log4j-core:$log4jVersion"
-        implementation 'com.google.code.findbugs:annotations:3.0.1'
-
-        testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
-        testImplementation "com.google.truth:truth:$truthVersion"
-        testImplementation "com.google.truth.extensions:truth-java8-extension:$truthVersion"
-        testImplementation "org.mockito:mockito-core:$mockitoVersion"
-        testImplementation "org.mockito:mockito-junit-jupiter:$mockitoVersion"
-    }
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "com.google.truth.extensions:truth-java8-extension:$truthVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+  }
 }
