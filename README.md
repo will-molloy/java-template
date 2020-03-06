@@ -1,9 +1,5 @@
-[![Build Status](https://travis-ci.com/wilmol/java-gradle-template.svg?branch=master)](https://travis-ci.com/wilmol/java-gradle-template)
+[![ci](https://github.com/wilmol/java-gradle-template/workflows/CI/badge.svg)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/wilmol/java-gradle-template/branch/master/graph/badge.svg)](https://codecov.io/gh/wilmol/java-gradle-template)
-[![GitHub issues](https://img.shields.io/github/issues/wilmol/java-gradle-template.svg)](https://github.com/wilmol/java-gradle-template/issues)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/wilmol/java-gradle-template.svg)](https://github.com/wilmol/java-gradle-template/pulls/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/wilmol/java-gradle-template/graphs/commit-activity)
-[![GitHub license](https://img.shields.io/github/license/wilmol/java-gradle-template.svg)](https://github.com/wilmol/java-gradle-template/blob/master/LICENSE)
 
 # java-gradle-template
 template repository for Java projects using Gradle
@@ -24,7 +20,7 @@ template repository for Java projects using Gradle
 * Java 11
 * Gradle 6
   * Multi-project builds
-* [Travis CI](https://travis-ci.com/) integration
+* [GitHub Actions CI](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) integration
 * [Codecov](https://codecov.io/) integration
 * [Spotless](https://github.com/diffplug/spotless) integration 
   * With [google-java-format](https://github.com/google/google-java-format)
