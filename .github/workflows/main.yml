@@ -20,7 +20,6 @@ jobs:
       - name: Build
         run: ./gradlew projects clean build jacocoTestReport --no-daemon --refresh-dependencies
       - name: Upload coverage to Codecov
-        # https://github.com/codecov/codecov-action
         uses: codecov/codecov-action@v1
         with:
           flags: unittests
