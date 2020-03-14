@@ -1,6 +1,6 @@
 # java-gradle-template
 
-[![build](https://github.com/wilmol/java-gradle-template/workflows/build/badge.svg)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3Abuild)
+[![build](https://github.com/wilmol/java-gradle-template/workflows/build/badge.svg?event=push)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3Abuild)
 [![codecov](https://codecov.io/gh/wilmol/java-gradle-template/branch/master/graph/badge.svg)](https://codecov.io/gh/wilmol/java-gradle-template)
 
 template repository for Java projects using Gradle
