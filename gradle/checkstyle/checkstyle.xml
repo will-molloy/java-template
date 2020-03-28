@@ -303,7 +303,7 @@
         -->
         <module name="RegexpSinglelineJava">
             <property name="format"
-                      value="import.*(?&lt;!com\.google\.common\.truth\.Truth8?\.)(A|a)ssert(?!.*(Throws|All|fail))"/>
+                      value="import.*(?&lt;!com\.google\.common\.truth\.Truth8?\.)(A|a)ssert(?!.*(Throws|DoesNotThrow|All|fail))"/>
             <property name="ignoreComments" value="true"/>
             <property name="message" value="Use com.google.truth.Truth assertions."/>
         </module>
