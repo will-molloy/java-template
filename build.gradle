@@ -136,7 +136,7 @@ subprojects {
   dependencies {
     implementation "com.google.guava:guava:$guavaVersion"
     implementation "org.apache.logging.log4j:log4j-core:$log4jVersion"
-    implementation 'com.google.code.findbugs:annotations:3.0.1'
+    implementation 'com.google.code.findbugs:annotations:3.0.1u2'
 
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
     testImplementation "com.google.truth:truth:$truthVersion"
