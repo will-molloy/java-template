@@ -116,7 +116,7 @@ subprojects {
   ext {
     // production
     guavaVersion = '29.0-jre'
-    log4jVersion = '2.13.2'
+    log4jVersion = '2.13.3'
     // test
     junitVersion = '5.6.2'
     truthVersion = '1.0.1'
