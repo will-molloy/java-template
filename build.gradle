@@ -1,5 +1,3 @@
-import com.github.spotbugs.SpotBugsTask
-
 logger.quiet "Java version: ${System.properties['java.version']}"
 logger.quiet "Gradle version: $gradle.gradleVersion"
 
@@ -12,7 +10,7 @@ buildscript {
   dependencies {
     // TODO pin version numbers (with the others below)
     classpath 'com.diffplug.spotless:spotless-plugin-gradle:4.0.1'
-    classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0'
+    classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.4.2"
     classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.+"
   }
 }
@@ -66,13 +64,11 @@ subprojects {
   // SpotBugs (static analysis - find possible bugs, performance issues etc.)
   apply plugin: 'com.github.spotbugs'
   spotbugs {
-    // TODO pin version number (with the others below)
-    toolVersion = '3.1.12'
     effort = 'max'
     reportLevel = 'low'
     ignoreFailures = false
   }
-  tasks.withType(SpotBugsTask) {
+  tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
     reports {
       html.enabled = true
       xml.enabled = false
