@@ -57,7 +57,7 @@ subprojects {
   checkstyle {
     // TODO pin version number (with the others below)
     toolVersion = '8.29'
-    configFile = rootProject.file('gradle/checkstyle/checkstyle.xml')
+    configFile = rootProject.file('./checkstyle.xml')
     maxErrors = 0
     maxWarnings = 0
     ignoreFailures = false
