@@ -9,9 +9,9 @@ buildscript {
   }
   dependencies {
     // TODO pin version numbers (with the others below)
-    classpath 'com.diffplug.spotless:spotless-plugin-gradle:4.0.1'
+    classpath "com.diffplug.spotless:spotless-plugin-gradle:4.4.0"
     classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.4.2"
-    classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.+"
+    classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.1"
   }
 }
 
@@ -54,7 +54,7 @@ subprojects {
   apply plugin: 'checkstyle'
   checkstyle {
     // TODO pin version number (with the others below)
-    toolVersion = '8.29'
+    toolVersion = '8.34'
     configFile = rootProject.file('./checkstyle.xml')
     maxErrors = 0
     maxWarnings = 0
@@ -91,7 +91,11 @@ subprojects {
       // log the overall results (based on https://stackoverflow.com/a/36130467/6122976)
       afterSuite { desc, result ->
         if (!desc.parent) { // will match the outermost suite
-          println("Results: ${result.resultType} (${result.testCount} test${result.testCount > 1 ? "s" : ""}, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
+          println("Results: ${result.resultType} " +
+              "(${result.testCount} test${result.testCount > 1 ? "s" : ""}, " +
+              "${result.successfulTestCount} passed, " +
+              "${result.failedTestCount} failed, " +
+              "${result.skippedTestCount} skipped)")
         }
       }
     }

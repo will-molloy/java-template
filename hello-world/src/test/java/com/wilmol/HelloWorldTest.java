@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Example test src.
  *
- * @author wilmol
+ * @author <a href=https://wilmol.com>Will Molloy</a>
  */
 class HelloWorldTest {
 

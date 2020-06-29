@@ -3,7 +3,7 @@ package com.wilmol;
 /**
  * Example main src.
  *
- * @author wilmol
+ * @author <a href=https://wilmol.com>Will Molloy</a>
  */
 public class HelloWorld {
 
