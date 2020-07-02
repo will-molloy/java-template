@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  run:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -31,3 +31,20 @@ jobs:
         with:
           flags: unittests
           fail_ci_if_error: true
+
+  automerge:
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "dependencies"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
+          UPDATE_LABELS: ""
+          UPDATE_METHOD: "rebase"
+          MERGE_DELETE_BRANCH: "true"
+          MERGE_FORKS: "false"
