@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  run:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -31,3 +31,23 @@ jobs:
         with:
           flags: unittests
           fail_ci_if_error: true
+
+  automerge-dependencies:
+    needs: build
+    if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Approve
+        uses: hmarr/auto-approve-action@v2.0.0
+        with:
+          github-token: "${{ secrets.PAT }}"
+
+      - name: Merge
+        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+        env:
+          GITHUB_TOKEN: "${{ secrets.PAT }}"
+          MERGE_LABELS: "dependencies"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "{pullRequest.title} (#{pullRequest.number})"
+          MERGE_FORKS: "false"
+          UPDATE_LABELS: "disabled"
