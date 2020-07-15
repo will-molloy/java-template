@@ -9,7 +9,7 @@ buildscript {
   }
   dependencies {
     // TODO pin version numbers (with the others below)
-    classpath "com.diffplug.spotless:spotless-plugin-gradle:4.5.1"
+    classpath "com.diffplug.spotless:spotless-plugin-gradle:5.1.0"
     classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.4.4"
     classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.1"
   }
@@ -42,7 +42,7 @@ subprojects {
   targetCompatibility = 11.0
 
   // Spotless (code formatting/linting)
-  apply plugin: 'com.diffplug.gradle.spotless'
+  apply plugin: 'com.diffplug.spotless'
   spotless {
     java {
       removeUnusedImports()
