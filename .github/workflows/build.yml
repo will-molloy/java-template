@@ -27,6 +27,7 @@ jobs:
         run: ./gradlew projects clean build jacocoTestReport --no-daemon --refresh-dependencies
 
       - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1.0.10
         with:
           flags: unittests
