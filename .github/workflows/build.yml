@@ -44,7 +44,7 @@ jobs:
           github-token: "${{ secrets.PAT }}"
 
       - name: Merge
-        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+        uses: "pascalgn/automerge-action@v0.9.0"
         env:
           GITHUB_TOKEN: "${{ secrets.PAT }}"
           MERGE_LABELS: ""
