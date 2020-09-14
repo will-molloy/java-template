@@ -118,7 +118,7 @@ subprojects {
     guavaVersion = '29.0-jre'
     log4jVersion = '2.13.3'
     // test
-    junitVersion = '5.6.2'
+    junitVersion = '5.7.0'
     truthVersion = '1.0.1'
     mockitoVersion = '3.5.10'
     // plugins TODO pin gradle plugin versions
