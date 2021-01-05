@@ -120,7 +120,7 @@ subprojects {
     // test
     junitVersion = '5.7.0'
     truthVersion = '1.1'
-    mockitoVersion = '3.6.28'
+    mockitoVersion = '3.7.0'
     // plugins TODO pin gradle plugin versions
   }
 
