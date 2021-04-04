@@ -32,23 +32,3 @@ jobs:
         with:
           flags: unittests
           fail_ci_if_error: true
-
-  automerge-dependencies:
-    needs: build
-    if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Approve
-        uses: hmarr/auto-approve-action@v2.1.0
-        with:
-          github-token: "${{ secrets.PAT }}"
-
-      - name: Merge
-        uses: "pascalgn/automerge-action@v0.13.1"
-        env:
-          GITHUB_TOKEN: "${{ secrets.PAT }}"
-          MERGE_LABELS: ""
-          MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "{pullRequest.title} (#{pullRequest.number})"
-          MERGE_FORKS: "false"
-          UPDATE_LABELS: "disabled"
