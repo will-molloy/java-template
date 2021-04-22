@@ -9,7 +9,7 @@ buildscript {
   }
   dependencies {
     // TODO pin version numbers (with the others below)
-    classpath "com.diffplug.spotless:spotless-plugin-gradle:5.11.1"
+    classpath "com.diffplug.spotless:spotless-plugin-gradle:5.12.4"
     classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.7.0"
     classpath "net.rdrei.android.buildtimetracker:gradle-plugin:0.11.1"
   }
