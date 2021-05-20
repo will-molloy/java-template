@@ -18,8 +18,8 @@ template repository for Java projects using Gradle
 ```
 
 ## Features
-* Java 11
-* Gradle 6
+* Java 16
+* Gradle 7
   * Multi-project builds
 * [GitHub Actions CI](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) integration
 * [Codecov](https://codecov.io/) integration
@@ -31,6 +31,6 @@ template repository for Java projects using Gradle
 
 ## Promise
 * Keep up to date with:
-  * Future Java LTS versions
+  * Future Java versions
   * Future Gradle versions
   * Other dependency upgrades
