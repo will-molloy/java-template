@@ -18,6 +18,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2.1.0
         with:
+          distribution: adopt
           java-version: 11
 
       - name: Grant execute permission for gradlew
