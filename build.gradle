@@ -65,6 +65,7 @@ subprojects {
     effort = 'max'
     reportLevel = 'low'
     ignoreFailures = false
+    excludeFilter = rootProject.file('./spotbugs-exclude.xml')
   }
   tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
     reports {
