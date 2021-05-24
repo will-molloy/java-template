@@ -38,8 +38,8 @@ allprojects {
 
 subprojects {
   apply plugin: 'java'
-  sourceCompatibility = 11.0
-  targetCompatibility = 11.0
+  sourceCompatibility = 16.0
+  targetCompatibility = 16.0
 
   // Spotless (code formatting/linting)
   apply plugin: 'com.diffplug.spotless'
