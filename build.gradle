@@ -52,7 +52,7 @@ subprojects {
   // Checkstyle (static analysis - code quality/style)
   apply plugin: 'checkstyle'
   checkstyle {
-    toolVersion = '8.34'
+    toolVersion = '8.42'
     configFile = rootProject.file('./checkstyle.xml')
     maxErrors = 0
     maxWarnings = 0
