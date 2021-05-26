@@ -119,7 +119,7 @@ subprojects {
 
     // test
     junitVersion = '5.7.2'
-    truthVersion = '1.1.2'
+    truthVersion = '1.1.3'
     mockitoVersion = '3.10.0'
   }
 
