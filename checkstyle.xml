@@ -306,10 +306,10 @@
       <property name="scope" value="public"/>
       <property name="minLineCount" value="2"/>
       <property name="allowedAnnotations" value="Override, Test"/>
-      <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
+      <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF"/>
     </module>
     <module name="MethodName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
       <message key="name.invalidPattern"
                value="Method name ''{0}'' must match pattern ''{1}''."/>
     </module>
@@ -365,7 +365,7 @@
     </module>
     <module name="RegexpSinglelineJava">
       <property name="format"
-                value="(?&lt;!import static.*)(Truth|Assertions|Mockito|ArgumentMatchers)"/>
+                value="(?&lt;!import static.*)(Truth|Assertions|Mockito|ArgumentMatchers)(?!.*(Extension|Settings))"/>
       <property name="ignoreComments" value="true"/>
       <property name="message" value="Use a static import."/>
     </module>
