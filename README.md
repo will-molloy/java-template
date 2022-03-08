@@ -1,36 +1,40 @@
 # java-gradle-template
 
-[![build](https://github.com/wilmol/java-gradle-template/workflows/build/badge.svg?event=push)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3Abuild)
+[![build](https://github.com/wilmol/java-gradle-template/workflows/build/badge.svg?branch=main&event=push)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3Abuild)
+[![integration-test](https://github.com/wilmol/java-gradle-template/workflows/integration-test/badge.svg?branch=main&event=push)](https://github.com/wilmol/java-gradle-template/actions?query=workflow%3Aintegration-test)
 [![codecov](https://codecov.io/gh/wilmol/java-gradle-template/branch/main/graph/badge.svg)](https://codecov.io/gh/wilmol/java-gradle-template)
 
 template repository for Java projects using Gradle
 
-## Usage
-* Just go to: https://github.com/wilmol/java-gradle-template/generate
-  * This will prompt you to create a new repository with all the files setup
-* Rename the root project (currently `java-gradle-template`) and group (currently `com.wilmol`) to your liking 
-* Create your README
-* Delete anything you won't use (sub projects, dependencies etc.)
-
-### Build
-```
-./gradlew spotlessApply build
-```
-
 ## Features
-* Java 17 LTS
-* Gradle 7
-  * Multi-project builds
-* [GitHub Actions CI](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) integration
-* [Codecov](https://codecov.io/) integration
-* [Spotless](https://github.com/diffplug/spotless) integration 
-  * With [google-java-format](https://github.com/google/google-java-format)
-* [Checkstyle](https://github.com/checkstyle/checkstyle) integration 
-  * With [google_checks](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
-* [SpotBugs](https://spotbugs.github.io/) integration
+
+- Java 17
+- Gradle 7
+- [GitHub Actions](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) CICD
+- Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
+- Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
+- Static analysis via [SpotBugs](https://spotbugs.github.io/)
+- Unit and integration test support via JUnit 5 and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
+- Code coverage reporting via [Codecov](https://codecov.io/)
+
+## Usage
+
+- Click [Use this template](https://github.com/wilmol/java-gradle-template/generate)
+  - This will prompt you to create a new repository with all the files setup
+- Rename the root project (currently `java-gradle-template`) and group (currently `com.wilmol`) to your liking
+- Delete anything you won't use (sub projects, dependencies, etc.)
+- Update the README
+
+### Build and test
+
+```
+./gradlew spotlessApply build integrationTest
+```
 
 ## Promise
-* Keep up to date with:
-  * Future Java versions
-  * Future Gradle versions
-  * Other dependency upgrades
+
+- Keep up to date with:
+  - Future Java versions
+  - Future Gradle versions
+  - Other dependency upgrades
+  - Any other cool tools or plugins
