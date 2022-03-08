@@ -11,6 +11,7 @@ buildscript {
     classpath group: 'com.diffplug.spotless', name: 'spotless-plugin-gradle', version: '6.0.5'
     classpath group: 'gradle.plugin.com.github.spotbugs.snom', name: 'spotbugs-gradle-plugin', version: '4.7.5'
     classpath group: 'net.rdrei.android.buildtimetracker', name: 'gradle-plugin', version: '0.11.1'
+    classpath group: 'org.unbroken-dome.gradle-plugins', name: 'gradle-testsets-plugin', version: '4.0.0'
   }
 }
 
@@ -102,14 +103,21 @@ subprojects {
 
   // JaCoCo (code coverage reporting)
   apply plugin: 'jacoco'
-  jacocoTestReport {
+  tasks.withType(JacocoReport) {
     reports {
       xml.enabled = true
       html.enabled = true
       csv.enabled = false
     }
   }
-  check.dependsOn jacocoTestReport
+  test.finalizedBy jacocoTestReport
+
+  // Integration test support
+  apply plugin: 'org.unbroken-dome.test-sets'
+  testSets {
+    integrationTest
+  }
+  integrationTest.finalizedBy jacocoIntegrationTestReport
 
   // pin dependency versions
   ext {
@@ -127,6 +135,7 @@ subprojects {
     implementation group: 'com.google.guava', name: 'guava', version: "$guavaVersion"
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
     implementation group: 'com.github.spotbugs', name: 'spotbugs-annotations', version: '4.5.2'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: "$junitVersion"
     testImplementation group: 'com.google.truth', name: 'truth', version: "$truthVersion"
