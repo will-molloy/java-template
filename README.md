@@ -24,6 +24,7 @@ template repository for Java projects using Gradle
 - Rename the root project (currently `java-gradle-template`) and group (currently `com.wilmol`) to your liking
 - Delete anything you won't use (sub projects, dependencies, etc.)
 - Update the README
+- Other non-code setup like your GitHub branch protections
 
 ### Build and test
 
