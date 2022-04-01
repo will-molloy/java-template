@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
-      - "wilmol"
+      - "will-molloy"
     labels:
       - "dependencies"
 
@@ -15,6 +15,6 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
-      - "wilmol"
+      - "will-molloy"
     labels:
       - "dependencies"
