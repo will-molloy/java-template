@@ -29,7 +29,7 @@ buildtimetracker {
 }
 
 allprojects {
-  group 'com.wilmol'
+  group 'com.willmolloy'
   version = '1.0.0'
   repositories {
     mavenCentral()

@@ -6,7 +6,7 @@
 <!--
     Based on google_checks.xml
     (https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
-    with a few tweaks by Will Molloy (https://wilmol.com/).
+    with a few tweaks by Will Molloy (https://willmolloy.com/).
 
     Note this assumes spotless (with googleJavaFormat()) is used in conjunction with checkstyle.
     Therefore some rules (e.g. LineLength, Indentation) are disabled as they conflict with spotless.
