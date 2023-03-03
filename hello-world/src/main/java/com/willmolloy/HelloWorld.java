@@ -1,5 +1,8 @@
 package com.willmolloy;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Example main src.
  *
@@ -7,7 +10,10 @@ package com.willmolloy;
  */
 public class HelloWorld {
 
-  public String helloWorld() {
-    return "Hello world!";
+  private final Logger log = LogManager.getLogger();
+
+  public String hello(String text) {
+    log.debug("Hello {}!", text);
+    return "Hello %s!".formatted(text);
   }
 }
