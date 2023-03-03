@@ -8,7 +8,7 @@ template repository for Java projects using Gradle
 
 ## Features
 
-- Java 17
+- Java 19
 - Gradle 7
 - [GitHub Actions](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) CICD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
