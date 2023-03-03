@@ -122,7 +122,6 @@ subprojects {
   // pin dependency versions
   ext {
     // production
-    guavaVersion = '31.1-jre'
     log4jVersion = '2.17.2'
 
     // test
@@ -132,10 +131,8 @@ subprojects {
   }
 
   dependencies {
-    implementation group: 'com.google.guava', name: 'guava', version: "$guavaVersion"
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
     implementation group: 'com.github.spotbugs', name: 'spotbugs-annotations', version: '4.6.0'
-    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: "$junitVersion"
     testImplementation group: 'com.google.truth', name: 'truth', version: "$truthVersion"
@@ -148,9 +145,5 @@ subprojects {
   // dependency cleanup, exclusions and resolutions
   configurations.all {
     exclude group: 'org.assertj' // using truth instead
-
-    resolutionStrategy {
-      force "com.google.guava:guava:$guavaVersion" // so the android version isn't pulled in
-    }
   }
 }
