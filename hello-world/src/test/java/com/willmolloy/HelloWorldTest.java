@@ -13,6 +13,6 @@ class HelloWorldTest {
 
   @Test
   void test() {
-    assertThat(new HelloWorld().helloWorld()).isEqualTo("Hello world!");
+    assertThat(new HelloWorld().hello("world")).isEqualTo("Hello world!");
   }
 }
