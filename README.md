@@ -8,9 +8,9 @@ template repository for Java projects using Gradle
 
 ## Features
 
-- JDK 19 (Amazon Corretto)
+- JDK 19 ([Amazon Corretto](https://aws.amazon.com/corretto/))
 - Gradle 7
-- [GitHub Actions](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle) CICD
+- [GitHub Actions](https://github.com/features/actions) CICD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
