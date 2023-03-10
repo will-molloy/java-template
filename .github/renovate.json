@@ -8,5 +8,8 @@
   ],
   "labels": [
     "dependencies"
+  ],
+  "ignoreDeps": [
+    "gradle"
   ]
 }
