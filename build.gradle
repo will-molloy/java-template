@@ -10,23 +10,13 @@ buildscript {
   dependencies {
     classpath group: 'com.diffplug.spotless', name: 'spotless-plugin-gradle', version: '6.16.0'
     classpath group: 'com.github.spotbugs.snom', name: 'spotbugs-gradle-plugin', version: '5.0.13'
-    classpath group: 'net.rdrei.android.buildtimetracker', name: 'gradle-plugin', version: '0.11.1'
+    classpath group: 'com.asarkar.gradle', name: 'build-time-tracker', version: '4.3.0'
     classpath group: 'org.unbroken-dome.gradle-plugins', name: 'gradle-testsets-plugin', version: '4.0.0'
   }
 }
 
 // Build time tracker
-apply plugin: 'build-time-tracker'
-buildtimetracker {
-  reporters {
-    summary {
-      ordered false
-      threshold 50
-      barstyle 'ascii'
-      shortenTaskNames false
-    }
-  }
-}
+apply plugin: 'com.asarkar.gradle.build-time-tracker'
 
 allprojects {
   group 'com.willmolloy'
