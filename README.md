@@ -16,6 +16,7 @@ template repository for Java projects using Gradle
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
 - Unit and integration test support via JUnit 5 and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
 - Code coverage reporting via [Codecov](https://codecov.io/)
+- Dependency upgrades via [Renovate bot](https://renovatebot.com)
 
 ## Usage
 
