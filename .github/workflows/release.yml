@@ -1,0 +1,30 @@
+name: release
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Bump version
+        id: version
+        uses: paulhatch/semantic-version@v5.0.2
+
+      - name: Create GitHub tag and release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          tag_name: ${{ steps.version.outputs.version_tag }}
+          generate_release_notes: true
