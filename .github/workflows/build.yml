@@ -32,7 +32,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: unit-tests
-          fail_ci_if_error: false
+          fail_ci_if_error: true
 
   integration-test:
     runs-on: ${{ matrix.os }}
@@ -60,7 +60,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: integration-tests
-          fail_ci_if_error: false
+          fail_ci_if_error: true
 
   release:
     needs: [ build, integration-test ]
