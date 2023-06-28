@@ -1,8 +1,6 @@
 # java-gradle-template
 
 [![build](https://github.com/will-molloy/java-gradle-template/workflows/build/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-gradle-template/actions?query=workflow%3Abuild)
-[![integration-test](https://github.com/will-molloy/java-gradle-template/workflows/integration-test/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-gradle-template/actions?query=workflow%3Aintegration-test)
-[![release](https://github.com/will-molloy/java-gradle-template/workflows/release/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-gradle-template/actions?query=workflow%3Arelease)
 [![codecov](https://codecov.io/gh/will-molloy/java-gradle-template/branch/main/graph/badge.svg)](https://codecov.io/gh/will-molloy/java-gradle-template)
 
 template repository for Java projects using Gradle

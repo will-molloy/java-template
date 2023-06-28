@@ -33,3 +33,51 @@ jobs:
         with:
           flags: unit-tests
           fail_ci_if_error: true
+
+  integration-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Java 19
+        uses: actions/setup-java@v3
+        with:
+          distribution: corretto
+          java-version: 19
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Integration Test
+        run: ./gradlew projects clean integrationTest --no-daemon --refresh-dependencies
+
+      - name: Upload coverage to Codecov (Linux only)
+        if: matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v3
+        with:
+          flags: integration-tests
+          fail_ci_if_error: true
+
+  release:
+    needs: [ build, integration-test ]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Bump version
+        id: version
+        uses: paulhatch/semantic-version@v5.0.2
+
+      - name: Create GitHub tag and release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          tag_name: ${{ steps.version.outputs.version_tag }}
+          generate_release_notes: true
