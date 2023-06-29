@@ -27,11 +27,10 @@ jobs:
       - name: Build
         run: ./gradlew projects clean build --no-daemon --refresh-dependencies
 
-      - name: Upload coverage to Codecov (Linux only)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          flags: unit-tests
+          flags: unit-tests-${{ matrix.os }}
           fail_ci_if_error: true
 
   integration-test:
@@ -55,11 +54,10 @@ jobs:
       - name: Integration Test
         run: ./gradlew projects clean integrationTest --no-daemon --refresh-dependencies
 
-      - name: Upload coverage to Codecov (Linux only)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          flags: integration-tests
+          flags: integration-tests-${{ matrix.os }}
           fail_ci_if_error: true
 
   release:
