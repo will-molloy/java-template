@@ -50,7 +50,6 @@ subprojects {
   }
 
   // SpotBugs (static analysis - find possible bugs, performance issues etc.)
-  // TODO working? test on another project
   apply(plugin = "com.github.spotbugs")
   configure<SpotBugsExtension> {
     effort.set(Effort.MAX)
@@ -64,7 +63,7 @@ subprojects {
   }
 
   tasks.withType<Test> {
-    // run tests in parallel, assumes they"re threadsafe
+    // run tests in parallel, assumes they're threadsafe
     maxParallelForks = Runtime.getRuntime().availableProcessors()
     // use JUnit 5 engine
     useJUnitPlatform()
