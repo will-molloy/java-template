@@ -1,4 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
 import com.github.spotbugs.snom.SpotBugsExtension
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
@@ -49,14 +51,17 @@ subprojects {
   }
 
   // SpotBugs (static analysis - find possible bugs, performance issues etc.)
+  // TODO working? test on another project
   apply(plugin = "com.github.spotbugs")
   configure<SpotBugsExtension> {
-    // TODO
+    effort.set(Effort.MAX)
+    reportLevel.set(Confidence.LOW)
+    ignoreFailures.set(false)
+    excludeFilter.set(rootProject.file("./spotbugs-exclude.xml"))
   }
   tasks.withType<SpotBugsTask> {
-    reports {
-      // TODO
-    }
+    reports.create("xml").required.set(true)
+    reports.create("html").required.set(true)
   }
 
   tasks.withType<Test> {
