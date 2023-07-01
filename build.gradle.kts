@@ -72,8 +72,8 @@ subprojects {
       showCauses = true
       showStackTraces = true
       // log the overall results (based on https://stackoverflow.com/a/36130467/6122976)
-      afterSuite(KotlinClosure2<TestDescriptor, TestResult, Any>({ desc, result ->
-        if (desc.parent != null) { // will match the outermost suite
+      afterSuite(KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
+        if (desc.parent == null) { // will match the outermost suite
           println(
             "Results: ${result.resultType} " +
                 "(${result.testCount} test${if (result.testCount > 1) "s" else ""}, " +
@@ -116,13 +116,12 @@ subprojects {
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
     testImplementation("org.mockito:mockito-junit-jupiter:$mockitoVersion")
 
-    // dependency cleanup, exclusions and resolutions
+    // dependency cleanup
     configurations.all {
-      // using truth instead
-      exclude("org.assertj")
+      exclude("org.assertj") // using truth instead
+      exclude("junit") // using junit5
       resolutionStrategy {
-        // so the android version isn't pulled in
-        force("com.google.guava:guava:$guavaVersion")
+        force("com.google.guava:guava:$guavaVersion") // so the android version isn't pulled in
       }
     }
   }
