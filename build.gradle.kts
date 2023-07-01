@@ -7,19 +7,12 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 logger.quiet("Java version: ${JavaVersion.current()}")
 logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
-// TODO migrate to declarative plugins
-buildscript {
-  repositories {
-    maven {
-      url = uri("https://plugins.gradle.org/m2/")
-    }
-  }
-  dependencies {
-    classpath("com.diffplug.spotless", "spotless-plugin-gradle", "6.19.0")
-    classpath("com.github.spotbugs.snom", "spotbugs-gradle-plugin", "5.0.14")
-    classpath("com.asarkar.gradle", "build-time-tracker", "4.3.0")
-    classpath("org.unbroken-dome.gradle-plugins", "gradle-testsets-plugin", "4.0.0")
-  }
+plugins {
+  id("java-library")
+  id("com.diffplug.gradle.spotless") version "6.19.0" apply (false)
+  id("com.github.spotbugs") version "5.0.14" apply (false)
+  id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
+  id("org.unbroken-dome.test-sets") version "4.0.0" apply (false)
 }
 
 allprojects {
@@ -110,18 +103,18 @@ subprojects {
   dependencies {
     val log4jVersion = "2.20.0"
     val guavaVersion = "32.0.1-jre"
-    "implementation"("org.apache.logging.log4j:log4j-core:$log4jVersion")
-    "implementation"("com.github.spotbugs:spotbugs-annotations:4.7.3")
-    "implementation"("com.google.guava:guava:$guavaVersion")
+    implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    implementation("com.github.spotbugs:spotbugs-annotations:4.7.3")
+    implementation("com.google.guava:guava:$guavaVersion")
 
     val junitVersion = "5.9.3"
     val truthVersion = "1.1.4"
     val mockitoVersion = "5.3.1"
-    "testImplementation"("org.junit.jupiter:junit-jupiter:$junitVersion")
-    "testImplementation"("com.google.truth:truth:$truthVersion")
-    "testImplementation"("com.google.truth.extensions:truth-java8-extension:$truthVersion")
-    "testImplementation"("org.mockito:mockito-core:$mockitoVersion")
-    "testImplementation"("org.mockito:mockito-junit-jupiter:$mockitoVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation("com.google.truth:truth:$truthVersion")
+    testImplementation("com.google.truth.extensions:truth-java8-extension:$truthVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+    testImplementation("org.mockito:mockito-junit-jupiter:$mockitoVersion")
 
     // dependency cleanup, exclusions and resolutions
     configurations.all {
