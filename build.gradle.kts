@@ -14,7 +14,6 @@ plugins {
   id("com.diffplug.gradle.spotless") version "6.19.0" apply (false)
   id("com.github.spotbugs") version "5.0.14" apply (false)
   id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
-  id("org.unbroken-dome.test-sets") version "4.0.0" apply (false)
 }
 
 allprojects {
@@ -101,9 +100,6 @@ subprojects {
       csv.required.set(false)
     }
   }
-
-  // Integration test support
-  // TODO test-set plugin
 
   dependencies {
     val log4jVersion = "2.20.0"
