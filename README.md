@@ -13,7 +13,7 @@ template repository for Java projects using Gradle
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
-- Unit and integration test support via JUnit 5 and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
+- Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
 - Code coverage reporting via [Codecov](https://codecov.io/)
 - Dependency upgrades via [Renovate bot](https://renovatebot.com)
 
