@@ -26,8 +26,8 @@ allprojects {
 subprojects {
   apply(plugin = "java")
   configure<JavaPluginExtension> {
-    sourceCompatibility = JavaVersion.VERSION_19
-    targetCompatibility = JavaVersion.VERSION_19
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
   }
 
   apply(plugin = "com.diffplug.spotless")
@@ -89,7 +89,7 @@ subprojects {
     }
   }
 
-  val previewFeatures = listOf("--enable-preview")
+  val previewFeatures = emptyList<String>()
   tasks.withType<JavaCompile> {
     options.compilerArgs = previewFeatures
   }
