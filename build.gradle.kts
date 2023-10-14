@@ -102,14 +102,14 @@ subprojects {
 
   dependencies {
     val log4jVersion = "2.20.0"
-    val guavaVersion = "32.0.1-jre"
+    val guavaVersion = "32.1.3-jre"
     implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
-    implementation("com.github.spotbugs:spotbugs-annotations:4.7.3")
+    implementation("com.github.spotbugs:spotbugs-annotations:4.8.0")
     implementation("com.google.guava:guava:$guavaVersion")
 
-    val junitVersion = "5.9.3"
-    val truthVersion = "1.1.4"
-    val mockitoVersion = "5.3.1"
+    val junitVersion = "5.10.0"
+    val truthVersion = "1.1.5"
+    val mockitoVersion = "5.6.0"
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("com.google.truth:truth:$truthVersion")
     testImplementation("com.google.truth.extensions:truth-java8-extension:$truthVersion")
