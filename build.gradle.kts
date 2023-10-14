@@ -11,8 +11,8 @@ logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
 plugins {
   id("java-library")
-  id("com.diffplug.gradle.spotless") version "6.19.0" apply (false)
-  id("com.github.spotbugs") version "5.0.14" apply (false)
+  id("com.diffplug.gradle.spotless") version "6.22.0" apply (false)
+  id("com.github.spotbugs") version "5.1.5" apply (false)
   id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
 }
 
