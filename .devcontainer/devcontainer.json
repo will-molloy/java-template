@@ -1,18 +1,6 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
   "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "17",
-      "jdkDistro": "open",
-      "installGradle": true,
-      "gradleVersion": "latest",
-      "installMaven": false,
-      "mavenVersion": false,
-      "installAnt": false,
-      "antVersion": "latest",
-      "installGroovy": false,
-      "groovyVersion": "latest"
-    },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest",
       "installDirectlyFromGitHubRelease": true
