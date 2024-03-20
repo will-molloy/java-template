@@ -1,0 +1,41 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "open",
+      "installGradle": true,
+      "gradleVersion": "latest",
+      "installMaven": false,
+      "mavenVersion": false,
+      "installAnt": false,
+      "antVersion": "latest",
+      "installGroovy": false,
+      "groovyVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest",
+      "installDirectlyFromGitHubRelease": true
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDeafultShell": false,
+      "installOhMySzh": true,
+      "installOhMyZshConfig":true,
+      "upgradePackages": true,
+      "username": "automatic",
+      "userUid": "automatic",
+      "userGid": "automatic",
+      "nonFreePackages": false
+    },
+    "ghcr.io/devcontainers-contrib/features/gradle-sdkman:2": {
+      "version": "latest",
+      "gdkVersion": "latest",
+      "gdkDistro": "open"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "os-provided",
+      "ppa": true
+    }
+  }
+}
