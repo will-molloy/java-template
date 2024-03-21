@@ -1,5 +1,5 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "image": "bellsoft/liberica-runtime-container:jdk-all-glibc",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest",
@@ -7,11 +7,11 @@
     },
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
-      "configureZshAsDeafultShell": false,
-      "installOhMySzh": true,
-      "installOhMyZshConfig":true,
+      "configureZshAsDefaultShell": false,
+      "installOhMyZsh": true,
+      "installOhMyZshConfig": true,
       "upgradePackages": true,
-      "username": "automatic",
+      "username": "panther",
       "userUid": "automatic",
       "userGid": "automatic",
       "nonFreePackages": false
