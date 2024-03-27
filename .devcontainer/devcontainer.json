@@ -1,10 +1,6 @@
 {
   "image": "docker.io/bellsoft/liberica-openjdk-alpine:21",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "version": "latest",
-      "installDirectlyFromGitHubRelease": true
-    },
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
       "configureZshAsDefaultShell": false,
