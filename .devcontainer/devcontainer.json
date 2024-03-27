@@ -16,11 +16,6 @@
       "userGid": "automatic",
       "nonFreePackages": false
     },
-    "ghcr.io/devcontainers-contrib/features/gradle-sdkman:2": {
-      "version": "latest",
-      "gdkVersion": "latest",
-      "gdkDistro": "open"
-    },
     "ghcr.io/devcontainers/features/git:1": {
       "version": "os-provided",
       "ppa": true
