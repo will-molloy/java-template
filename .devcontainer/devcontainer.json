@@ -15,10 +15,6 @@
       "userUid": "automatic",
       "userGid": "automatic",
       "nonFreePackages": false
-    },
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "os-provided",
-      "ppa": true
     }
   }
 }
