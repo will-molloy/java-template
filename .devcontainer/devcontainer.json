@@ -3,7 +3,7 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
-      "configureZshAsDefaultShell": false,
+      "configureZshAsDefaultShell": true,
       "installOhMyZsh": true,
       "installOhMyZshConfig": true,
       "upgradePackages": true,
@@ -12,5 +12,6 @@
       "userGid": "automatic",
       "nonFreePackages": false
     }
-  }
+  },
+  "containerUser": "panther"
 }
