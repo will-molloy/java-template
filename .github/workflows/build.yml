@@ -32,6 +32,7 @@ jobs:
         with:
           flags: unit-tests-${{ matrix.os }}
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   integration-test:
     runs-on: ${{ matrix.os }}
@@ -59,6 +60,7 @@ jobs:
         with:
           flags: integration-tests-${{ matrix.os }}
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
     needs: [ build, integration-test ]
