@@ -29,8 +29,19 @@ template repository for Java projects using Gradle
 ### Build and test
 
 ```
-./gradlew spotlessApply build integrationTest
+./gradlew build integrationTest
 ```
+
+### Upgrade Gradle
+
+- Find the version number on the [releases page](https://gradle.org/releases/)
+  - [Java Compatibility Matrix](https://docs.gradle.org/current/userguide/compatibility.html)
+- Run: `./gradlew wrapper --gradle-version <VERSION> --distribution-type all`
+
+### Upgrade Java
+
+- Download the JDK using IntelliJ
+- Update all references
 
 ## Promise
 
