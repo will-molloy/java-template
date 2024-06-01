@@ -29,7 +29,7 @@ template repo for Java projects using Gradle
 
 ### Build and test
 
-```
+```bash
 ./gradlew spotlessApply build integrationTest
 ```
 
