@@ -18,17 +18,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java 21
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: corretto
           java-version: 21
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Build
-        run: ./gradlew projects clean build --no-daemon --refresh-dependencies
+        run: |
+          chmod +x gradlew
+          ./gradlew projects clean build --no-daemon --refresh-dependencies
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -46,17 +45,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java 21
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: corretto
           java-version: 21
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Integration Test
-        run: ./gradlew projects clean integrationTest --no-daemon --refresh-dependencies
+        run: |
+          chmod +x gradlew
+          ./gradlew projects clean integrationTest --no-daemon --refresh-dependencies
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
