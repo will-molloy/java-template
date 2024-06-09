@@ -112,7 +112,6 @@ subprojects {
     val mockitoVersion = "5.12.0"
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("com.google.truth:truth:$truthVersion")
-    testImplementation("com.google.truth.extensions:truth-java8-extension:$truthVersion")
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
     testImplementation("org.mockito:mockito-junit-jupiter:$mockitoVersion")
 
