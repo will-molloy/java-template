@@ -42,6 +42,7 @@ subprojects {
   configure<CheckstyleExtension> {
     toolVersion = "10.12.0"
     configFile = rootProject.file("./checkstyle.xml")
+    configProperties = mapOf("suppressionFile" to rootProject.file("./checkstyle-suppressions.xml"))
     maxErrors = 0
     maxWarnings = 0
     isIgnoreFailures = false

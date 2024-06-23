@@ -5,7 +5,7 @@ import static com.google.common.truth.Truth.assertThat;
 import org.junit.jupiter.api.Test;
 
 /**
- * Example unit test.
+ * Unit tests for {@link HelloWorld}.
  *
  * @author <a href=https://willmolloy.com>Will Molloy</a>
  */
