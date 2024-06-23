@@ -1,0 +1,29 @@
+name: release
+
+on:
+  workflow_run:
+    workflows: [ build ]
+    types: [ completed ]
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+
+      - name: Create GitHub tag and release
+        uses: softprops/action-gh-release@v2.0.5
+        with:
+          tag_name: ${{ steps.version.outputs.version_tag }}
+          generate_release_notes: true

@@ -5,9 +5,6 @@ on:
   push:
     branches: [ main ]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -27,7 +24,7 @@ jobs:
       - name: Build
         run: |
           chmod +x gradlew
-          ./gradlew projects clean build --no-daemon --refresh-dependencies
+          ./gradlew clean build
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -51,10 +48,10 @@ jobs:
           distribution: corretto
           java-version: 21
 
-      - name: Integration Test
+      - name: Integration test
         run: |
           chmod +x gradlew
-          ./gradlew projects clean integrationTest --no-daemon --refresh-dependencies
+          ./gradlew clean integrationTest
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -62,23 +59,3 @@ jobs:
           flags: integration-tests-${{ matrix.os }}
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  release:
-    needs: [ build, integration-test ]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Bump version
-        id: version
-        uses: paulhatch/semantic-version@v5.4.0
-
-      - name: Create GitHub tag and release
-        uses: softprops/action-gh-release@v2.0.5
-        with:
-          tag_name: ${{ steps.version.outputs.version_tag }}
-          generate_release_notes: true
