@@ -1,7 +1,6 @@
 # java-template
 
 [![build](https://github.com/will-molloy/java-template/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-template/actions/workflows/build.yml)
-[![release](https://github.com/will-molloy/java-template/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/will-molloy/java-template/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/will-molloy/java-template/branch/main/graph/badge.svg)](https://codecov.io/gh/will-molloy/java-template)
 
 template repo for Java projects using Gradle
@@ -10,7 +9,7 @@ template repo for Java projects using Gradle
 
 - JDK 21 ([Amazon Corretto](https://aws.amazon.com/corretto/))
 - Gradle 8
-- [GitHub Actions](https://github.com/features/actions) CICD
+- [GitHub Actions](https://github.com/features/actions) CI/CD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
@@ -23,10 +22,10 @@ template repo for Java projects using Gradle
 - Click [Use this template](https://github.com/will-molloy/java-template/generate)
   - This will prompt you to create a new repo with all the files setup
 - Rename the root project (currently `java-template`) and group (currently `com.willmolloy`) to your liking
-- Delete anything you won't use (sub projects, dependencies, etc.)
+- Delete anything you won't use
 - Update the README
-- Other non-code setup like your GitHub branch protections
-- **NOTE:** if creating a private repo, you probably want to disable the windows and mac builds
+- Other non-code setup like GitHub branch protections
+- _**NOTE:** if creating a private repo, you probably want to disable the windows and mac builds_
 
 ### Build and test
 
@@ -52,3 +51,7 @@ template repo for Java projects using Gradle
   - Future Gradle versions
   - Other dependency upgrades
   - Any other cool tools or plugins
+
+___
+
+Generated from [java-template](https://github.com/will-molloy/java-template)
