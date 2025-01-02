@@ -8,8 +8,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author <a href=https://willmolloy.com>Will Molloy</a>
  */
-class HelloWorld {
-
+class HelloJava {
   private final Logger log = LogManager.getLogger();
 
   String hello(String text) {

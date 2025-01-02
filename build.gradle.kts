@@ -5,12 +5,14 @@ import com.github.spotbugs.snom.SpotBugsExtension
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 logger.quiet("Java version: ${JavaVersion.current()}")
 logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
 plugins {
   id("java-library")
+  kotlin("jvm") version "2.1.0"
   id("com.diffplug.gradle.spotless") version "6.25.0" apply (false)
   id("com.github.spotbugs") version "6.0.15" apply (false)
   id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
@@ -28,6 +30,11 @@ subprojects {
   configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+  }
+
+  apply(plugin = "kotlin")
+  configure<KotlinJvmProjectExtension> {
+    jvmToolchain(21)
   }
 
   apply(plugin = "com.diffplug.spotless")
