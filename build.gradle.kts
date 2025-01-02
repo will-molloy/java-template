@@ -23,9 +23,7 @@ allprojects {
   repositories {
     mavenCentral()
   }
-}
 
-subprojects {
   apply(plugin = "java")
   configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -42,9 +40,22 @@ subprojects {
     java {
       removeUnusedImports()
       googleJavaFormat()
+      trimTrailingWhitespace()
+      endWithNewline()
+    }
+    kotlin {
+      ktlint()
+      trimTrailingWhitespace()
+      endWithNewline()
+    }
+    kotlinGradle {
+      ktlint().editorConfigOverride(mapOf("ktlint_standard_no-empty-file" to "disabled"))
+      trimTrailingWhitespace()
+      endWithNewline()
     }
   }
 
+  // TODO this doesn't work on Kotlin, look into Detekt?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
     toolVersion = "10.12.0"
@@ -75,17 +86,19 @@ subprojects {
       showExceptions = true
       showCauses = true
       showStackTraces = true
-      afterSuite(KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
-        if (desc.parent == null) {
-          println(
-            "Results: ${result.resultType} " +
+      afterSuite(
+        KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
+          if (desc.parent == null) {
+            println(
+              "Results: ${result.resultType} " +
                 "(${result.testCount} test${if (result.testCount > 1) "s" else ""}, " +
                 "${result.successfulTestCount} passed, " +
                 "${result.failedTestCount} failed, " +
-                "${result.skippedTestCount} skipped)"
-          )
-        }
-      }))
+                "${result.skippedTestCount} skipped)",
+            )
+          }
+        }),
+      )
     }
     finalizedBy(tasks.withType<JacocoReport>())
   }
