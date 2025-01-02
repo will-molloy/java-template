@@ -8,9 +8,9 @@ template repo for Java/Kotlin projects using Gradle
 ## Features
 
 - JDK 21 ([Amazon Corretto](https://aws.amazon.com/corretto/))
-- Gradle 8 with Kotlin DSL
+- [Gradle 8](https://github.com/gradle/gradle) with Kotlin DSL
 - [GitHub Actions](https://github.com/features/actions) CI/CD
-- Automatic code formatting via [Spotless](https://github.com/diffplug/spotless) (`google-java-format` and `ktlint`)
+- Automatic code formatting via [Spotless](https://github.com/diffplug/spotless) ([`google-java-format`](https://github.com/google/google-java-format) and [`ktlint`](https://github.com/pinterest/ktlint))
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
 - Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
