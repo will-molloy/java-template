@@ -5,15 +5,17 @@ import com.github.spotbugs.snom.SpotBugsExtension
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 logger.quiet("Java version: ${JavaVersion.current()}")
 logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
 plugins {
   id("java-library")
-  id("com.diffplug.gradle.spotless") version "6.25.0" apply (false)
-  id("com.github.spotbugs") version "6.0.15" apply (false)
-  id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
+  kotlin("jvm") version libs.versions.kotlin
+  alias(libs.plugins.spotless)
+  alias(libs.plugins.spotbugs)
+  alias(libs.plugins.buildtimetracker)
 }
 
 allprojects {
@@ -21,13 +23,16 @@ allprojects {
   repositories {
     mavenCentral()
   }
-}
 
-subprojects {
   apply(plugin = "java")
   configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+  }
+
+  apply(plugin = "kotlin")
+  configure<KotlinJvmProjectExtension> {
+    jvmToolchain(21)
   }
 
   apply(plugin = "com.diffplug.spotless")
@@ -35,9 +40,22 @@ subprojects {
     java {
       removeUnusedImports()
       googleJavaFormat()
+      trimTrailingWhitespace()
+      endWithNewline()
+    }
+    kotlin {
+      ktlint()
+      trimTrailingWhitespace()
+      endWithNewline()
+    }
+    kotlinGradle {
+      ktlint().editorConfigOverride(mapOf("ktlint_standard_no-empty-file" to "disabled"))
+      trimTrailingWhitespace()
+      endWithNewline()
     }
   }
 
+  // TODO this doesn't work on Kotlin, look into Detekt?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
     toolVersion = "10.12.0"
@@ -68,17 +86,19 @@ subprojects {
       showExceptions = true
       showCauses = true
       showStackTraces = true
-      afterSuite(KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
-        if (desc.parent == null) {
-          println(
-            "Results: ${result.resultType} " +
+      afterSuite(
+        KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
+          if (desc.parent == null) {
+            println(
+              "Results: ${result.resultType} " +
                 "(${result.testCount} test${if (result.testCount > 1) "s" else ""}, " +
                 "${result.successfulTestCount} passed, " +
                 "${result.failedTestCount} failed, " +
-                "${result.skippedTestCount} skipped)"
-          )
-        }
-      }))
+                "${result.skippedTestCount} skipped)",
+            )
+          }
+        }),
+      )
     }
     finalizedBy(tasks.withType<JacocoReport>())
   }
@@ -102,20 +122,23 @@ subprojects {
   }
 
   dependencies {
-    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
-    implementation("org.apache.logging.log4j:log4j-api:2.23.1")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.23.1")
-    implementation("com.github.spotbugs:spotbugs-annotations:4.8.5")
-    implementation("com.google.guava:guava:33.2.0-jre")
+    implementation(rootProject.libs.log4j.core)
+    implementation(rootProject.libs.log4j.api)
+    implementation(rootProject.libs.log4j.slf4j2)
+    implementation(rootProject.libs.spotbugs.annotations)
+    implementation(rootProject.libs.guava)
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
-    testImplementation("com.google.truth:truth:1.4.2")
-    testImplementation("org.mockito:mockito-core:5.12.0")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")
+    testImplementation(rootProject.libs.junit)
+    testImplementation(rootProject.libs.truth)
+    testImplementation(rootProject.libs.mockito.core)
+    testImplementation(rootProject.libs.mockito.junit)
 
     configurations.all {
-      exclude("org.assertj")
-      exclude("junit")
+      exclude(group = "org.assertj")
+      exclude(group = "junit")
+      resolutionStrategy {
+        force("com.google.guava:guava:${rootProject.libs.versions.guava.get()}") // exclude android version
+      }
     }
   }
 }

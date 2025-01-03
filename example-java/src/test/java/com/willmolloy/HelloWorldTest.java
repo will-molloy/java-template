@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class HelloWorldTest {
 
   @Test
-  void test() {
+  void test_hello() {
     assertThat(new HelloWorld().hello("world")).isEqualTo("Hello world!");
   }
 }

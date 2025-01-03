@@ -1,2 +1,3 @@
 rootProject.name = "java-template"
-include("hello-world")
+include("example-java")
+include("example-kotlin")
