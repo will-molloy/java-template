@@ -12,7 +12,7 @@ guava = "33.4.0-jre"
 # test libs
 junit = "5.11.4"
 truth = "1.4.4"
-mockito = "5.14.2"
+mockito = "5.15.2"
 
 [libraries]
 spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
