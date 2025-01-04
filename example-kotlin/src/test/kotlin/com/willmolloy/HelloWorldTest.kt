@@ -3,9 +3,7 @@ package com.willmolloy
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
-/**
- * Unit tests for [HelloWorld].
- */
+/** Unit tests for [HelloWorld]. */
 class HelloWorldTest {
   @Test
   fun `test hello`() {

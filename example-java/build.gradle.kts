@@ -1,7 +1,3 @@
-plugins {
-  alias(libs.plugins.testsets)
-}
+plugins { alias(libs.plugins.testsets) }
 
-testSets {
-  create("integrationTest")
-}
+testSets { create("integrationTest") }
