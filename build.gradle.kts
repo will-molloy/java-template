@@ -8,7 +8,6 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 logger.quiet("Java version: ${JavaVersion.current()}")
-
 logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
 plugins {
@@ -21,7 +20,9 @@ plugins {
 
 allprojects {
   group = "com.willmolloy"
-  repositories { mavenCentral() }
+  repositories {
+    mavenCentral()
+  }
 
   apply(plugin = "java")
   configure<JavaPluginExtension> {
@@ -30,7 +31,9 @@ allprojects {
   }
 
   apply(plugin = "kotlin")
-  configure<KotlinJvmProjectExtension> { jvmToolchain(21) }
+  configure<KotlinJvmProjectExtension> {
+    jvmToolchain(21)
+  }
 
   apply(plugin = "com.diffplug.spotless")
   configure<SpotlessExtension> {
@@ -42,15 +45,16 @@ allprojects {
       endWithNewline()
     }
     // https://github.com/diffplug/spotless/tree/main/plugin-gradle#kotlin
+    // ktfmt seems better than ktlint (more deterministic/consistent output).
+    // Furthermore, using spotless more for formatting than linting.
+    // However, ktfmt has some weird output with Gradle scripts, so using ktlint for that.
     kotlin {
-      ktlint()
       ktfmt().googleStyle()
       trimTrailingWhitespace()
       endWithNewline()
     }
     kotlinGradle {
       ktlint().editorConfigOverride(mapOf("ktlint_standard_no-empty-file" to "disabled"))
-      ktfmt().googleStyle()
       trimTrailingWhitespace()
       endWithNewline()
     }
@@ -74,7 +78,9 @@ allprojects {
     ignoreFailures.set(false)
     excludeFilter.set(rootProject.file("./spotbugs-exclude.xml"))
   }
-  tasks.withType<SpotBugsTask> { reports.create("html").required.set(true) }
+  tasks.withType<SpotBugsTask> {
+    reports.create("html").required.set(true)
+  }
 
   tasks.withType<Test> {
     maxParallelForks = Runtime.getRuntime().availableProcessors()
@@ -103,12 +109,22 @@ allprojects {
   }
 
   apply(plugin = "jacoco")
-  tasks.withType<JacocoReport> { reports { xml.required.set(true) } }
+  tasks.withType<JacocoReport> {
+    reports {
+      xml.required.set(true)
+    }
+  }
 
   val previewFeatures = emptyList<String>()
-  tasks.withType<JavaCompile> { options.compilerArgs = previewFeatures }
-  tasks.withType<Test> { jvmArgs = previewFeatures }
-  tasks.withType<JavaExec> { jvmArgs = previewFeatures }
+  tasks.withType<JavaCompile> {
+    options.compilerArgs = previewFeatures
+  }
+  tasks.withType<Test> {
+    jvmArgs = previewFeatures
+  }
+  tasks.withType<JavaExec> {
+    jvmArgs = previewFeatures
+  }
 
   dependencies {
     implementation(rootProject.libs.log4j.core)

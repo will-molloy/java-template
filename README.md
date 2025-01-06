@@ -12,7 +12,8 @@ template repo for Java/Kotlin Gradle projects
 - [GitHub Actions](https://github.com/features/actions) CI/CD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
   - Java: [`google-java-format`](https://github.com/google/google-java-format)
-  - Kotlin: [`ktlint`](https://github.com/pinterest/ktlint) and [`ktfmt`](https://github.com/facebook/ktfmt)
+  - Kotlin: [`ktfmt`](https://github.com/facebook/ktfmt)
+  - Kotlin Gradle: [`ktlint`](https://github.com/pinterest/ktlint)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
 - Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
