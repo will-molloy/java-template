@@ -37,14 +37,16 @@ allprojects {
 
   apply(plugin = "com.diffplug.spotless")
   configure<SpotlessExtension> {
+    // https://github.com/diffplug/spotless/tree/main/plugin-gradle#java
     java {
       removeUnusedImports()
       googleJavaFormat()
       trimTrailingWhitespace()
       endWithNewline()
     }
+    // https://github.com/diffplug/spotless/tree/main/plugin-gradle#kotlin
     kotlin {
-      ktlint()
+      ktfmt().googleStyle()
       trimTrailingWhitespace()
       endWithNewline()
     }
@@ -55,7 +57,7 @@ allprojects {
     }
   }
 
-  // TODO this doesn't work on Kotlin, look into Detekt?
+  // TODO Kotlin alternative?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
     toolVersion = "10.12.0"
@@ -137,7 +139,8 @@ allprojects {
       exclude(group = "org.assertj")
       exclude(group = "junit")
       resolutionStrategy {
-        force("com.google.guava:guava:${rootProject.libs.versions.guava.get()}") // exclude android version
+        // exclude android version
+        force("com.google.guava:guava:${rootProject.libs.versions.guava.get()}")
       }
     }
   }

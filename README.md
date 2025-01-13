@@ -3,14 +3,17 @@
 [![build](https://github.com/will-molloy/java-template/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-template/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/will-molloy/java-template/branch/main/graph/badge.svg)](https://codecov.io/gh/will-molloy/java-template)
 
-template repo for Java/Kotlin projects using Gradle
+template repo for Java/Kotlin Gradle projects
 
 ## Features
 
 - JDK 21 ([Amazon Corretto](https://aws.amazon.com/corretto/))
-- [Gradle 8](https://github.com/gradle/gradle) with Kotlin DSL
+- [Gradle 8](https://github.com/gradle/gradle) (Kotlin DSL)
 - [GitHub Actions](https://github.com/features/actions) CI/CD
-- Automatic code formatting via [Spotless](https://github.com/diffplug/spotless) ([`google-java-format`](https://github.com/google/google-java-format) and [`ktlint`](https://github.com/pinterest/ktlint))
+- Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
+  - Java: [`google-java-format`](https://github.com/google/google-java-format)
+  - Kotlin: [`ktfmt`](https://github.com/facebook/ktfmt)
+  - Kotlin Gradle: [`ktlint`](https://github.com/pinterest/ktlint)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
 - Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
