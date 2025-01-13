@@ -5,14 +5,12 @@ import com.github.spotbugs.snom.SpotBugsExtension
 import com.github.spotbugs.snom.SpotBugsTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 logger.quiet("Java version: ${JavaVersion.current()}")
 logger.quiet("Gradle version: ${gradle.gradleVersion}")
 
 plugins {
   id("java-library")
-  kotlin("jvm") version libs.versions.kotlin
   alias(libs.plugins.spotless)
   alias(libs.plugins.spotbugs)
   alias(libs.plugins.buildtimetracker)
@@ -28,11 +26,6 @@ allprojects {
   configure<JavaPluginExtension> {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-  }
-
-  apply(plugin = "kotlin")
-  configure<KotlinJvmProjectExtension> {
-    jvmToolchain(21)
   }
 
   apply(plugin = "com.diffplug.spotless")
@@ -55,9 +48,15 @@ allprojects {
       trimTrailingWhitespace()
       endWithNewline()
     }
+    // https://github.com/diffplug/spotless/tree/main/plugin-gradle#scala
+    scala {
+      scalafmt().configFile("$rootDir/scalafmt.conf")
+      trimTrailingWhitespace()
+      endWithNewline()
+    }
   }
 
-  // TODO Kotlin alternative?
+  // TODO Kotlin/Scala alternative?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
     toolVersion = "10.12.0"
@@ -112,23 +111,8 @@ allprojects {
     }
   }
 
-  val previewFeatures = emptyList<String>()
-  tasks.withType<JavaCompile> {
-    options.compilerArgs = previewFeatures
-  }
-  tasks.withType<Test> {
-    jvmArgs = previewFeatures
-  }
-  tasks.withType<JavaExec> {
-    jvmArgs = previewFeatures
-  }
-
   dependencies {
-    implementation(rootProject.libs.log4j.core)
-    implementation(rootProject.libs.log4j.api)
-    implementation(rootProject.libs.log4j.slf4j2)
     implementation(rootProject.libs.spotbugs.annotations)
-    implementation(rootProject.libs.guava)
 
     testImplementation(rootProject.libs.junit)
     testImplementation(rootProject.libs.truth)
@@ -138,10 +122,6 @@ allprojects {
     configurations.all {
       exclude(group = "org.assertj")
       exclude(group = "junit")
-      resolutionStrategy {
-        // exclude android version
-        force("com.google.guava:guava:${rootProject.libs.versions.guava.get()}")
-      }
     }
   }
 }

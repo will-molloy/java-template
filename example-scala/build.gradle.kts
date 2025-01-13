@@ -1,9 +1,9 @@
 plugins {
-  kotlin("jvm") version libs.versions.kotlin
+  scala
 }
 
-kotlin {
-  jvmToolchain(21)
+dependencies {
+  implementation(libs.scala.library)
 }
 
 // TODO disabling on Kotlin/Scala atm... too many false positives

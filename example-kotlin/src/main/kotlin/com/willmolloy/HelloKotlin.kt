@@ -5,9 +5,7 @@ package com.willmolloy
  *
  * @author <a href=https://willmolloy.com>Will Molloy</a>
  */
-class HelloWorld {
+object HelloKotlin {
 
-  fun hello(text: String): String {
-    return "Hello $text!"
-  }
+  fun hello(text: String): String = "Hello $text, from Kotlin!"
 }
