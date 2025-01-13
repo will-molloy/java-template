@@ -5,14 +5,14 @@ import static com.google.common.truth.Truth.assertThat;
 import org.junit.jupiter.api.Test;
 
 /**
- * Integration tests for {@link HelloWorld}.
+ * Integration tests for {@link HelloJava}.
  *
  * @author <a href=https://willmolloy.com>Will Molloy</a>
  */
-class HelloWorldIntegrationTest {
+class HelloJavaIntegrationTest {
 
   @Test
   void test_hello() {
-    assertThat(new HelloWorld().hello("world")).isEqualTo("Hello world!");
+    assertThat(new HelloJava().hello("world")).isEqualTo("Hello world!");
   }
 }

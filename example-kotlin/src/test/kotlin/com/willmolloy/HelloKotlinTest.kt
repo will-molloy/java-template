@@ -3,11 +3,11 @@ package com.willmolloy
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
-/** Unit tests for [HelloWorld]. */
-class HelloWorldTest {
+/** Unit tests for [HelloKotlin]. */
+class HelloKotlinTest {
 
   @Test
   fun `test hello`() {
-    assertThat(HelloWorld().hello("world")).isEqualTo("Hello world!")
+    assertThat(HelloKotlin.hello("world")).isEqualTo("Hello world, from Kotlin!")
   }
 }
