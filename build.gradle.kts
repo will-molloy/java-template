@@ -45,9 +45,6 @@ allprojects {
       endWithNewline()
     }
     // https://github.com/diffplug/spotless/tree/main/plugin-gradle#kotlin
-    // ktfmt seems better than ktlint (more deterministic/consistent output).
-    // Furthermore, using spotless more for formatting than linting.
-    // However, ktfmt has some weird output with Gradle scripts, so using ktlint for that.
     kotlin {
       ktfmt().googleStyle()
       trimTrailingWhitespace()
