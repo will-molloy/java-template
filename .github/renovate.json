@@ -2,26 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":dependencyDashboard",
-    "schedule:monthly",
-    "group:all"
+    "schedule:weekly"
   ],
   "labels": ["dependencies"],
   "packageRules": [
     {
+      "groupName": "other dependencies",
+      "matchPackageNames": ["*"]
+    },
+    {
       "groupName": "java dependencies",
-      "groupSlug": "java",
       "matchCategories": ["java"]
     },
     {
       "groupName": "gradle",
       "matchManagers": ["gradle-wrapper"]
-    },
-    {
-      "groupName": "other dependencies",
-      "description": "Everything else. TODO 'default' matcher so don't have to list them out - not possible?",
-      "groupSlug": "other",
-      "matchCategories": ["ci", "docker"]
     }
   ]
 }
