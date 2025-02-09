@@ -3,13 +3,24 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard",
-    "group:all",
     "schedule:monthly"
   ],
-  "labels": [
-    "dependencies"
-  ],
-  "ignoreDeps": [
-    "gradle"
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "groupName": "java dependencies",
+      "groupSlug": "java",
+      "matchCategories": ["java"]
+    },
+    {
+      "groupName": "gradle",
+      "matchManagers": ["gradle-wrapper"]
+    },
+    {
+      "groupName": "other dependencies",
+      "description": "Everything else. TODO 'default' matcher so don't have to list them out - not possible?",
+      "groupSlug": "other",
+      "matchCategories": ["ci", "docker"]
+    }
   ]
 }

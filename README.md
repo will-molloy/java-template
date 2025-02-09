@@ -38,6 +38,8 @@ template repo for Java (or Kotlin/Scala) Gradle projects
 
 ### Upgrade Gradle
 
+_Renovate should cover this_
+
 - Find the version number on the [releases page](https://gradle.org/releases/)
   - [Java Compatibility Matrix](https://docs.gradle.org/current/userguide/compatibility.html)
 - Run: `./gradlew wrapper --gradle-version <VERSION> --distribution-type all`
