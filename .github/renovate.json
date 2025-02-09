@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard",
-    "schedule:monthly"
+    "schedule:monthly",
+    "group:all"
   ],
   "labels": ["dependencies"],
   "packageRules": [
