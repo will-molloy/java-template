@@ -5,9 +5,11 @@
     "schedule:weekly"
   ],
   "labels": ["dependencies"],
+  "separateMajorMinor": false,
   "packageRules": [
     {
       "groupName": "other dependencies",
+      "description": "catchall for anything not specified",
       "matchPackageNames": ["*"]
     },
     {
@@ -17,6 +19,10 @@
     {
       "groupName": "gradle",
       "matchManagers": ["gradle-wrapper"]
+    },
+    {
+      "groupName": "ci/cd dependencies",
+      "matchCategories": ["ci", "cd", "docker"]
     }
   ]
 }
