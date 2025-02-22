@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: |
           chmod +x gradlew
-          ./gradlew clean build
+          ./gradlew projects clean build --no-daemon --refresh-dependencies
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -51,7 +51,7 @@ jobs:
       - name: Integration test
         run: |
           chmod +x gradlew
-          ./gradlew clean integrationTest
+          ./gradlew clean integrationTest --no-daemon --refresh-dependencies
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
