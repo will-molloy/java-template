@@ -23,6 +23,7 @@
 # Logs and databases #
 ######################
 *.log
+*.db
 
 # OS generated files #
 ######################
@@ -43,10 +44,8 @@ Thumbs.db
 !/gradle/wrapper/gradle-wrapper.jar
 
 # Build output directies
-/target
-*/target
-/build
-*/build
+target
+build
 
 # IntelliJ specific files/directories
 out
@@ -55,6 +54,7 @@ out
 *.iws
 *.iml
 atlassian-ide-plugin.xml
+.kotlin
 
 # Eclipse specific files/directories
 .classpath
