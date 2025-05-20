@@ -4,7 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [[HelloScala]]. */
-class HelloScalaTest {
+final class HelloScalaTest {
 
   @Test
   def test_hello(): Unit = {

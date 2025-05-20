@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Will
  */
-class HelloJavaIntegrationTest {
+final class HelloJavaIntegrationTest {
 
   @Test
   void test_hello() {

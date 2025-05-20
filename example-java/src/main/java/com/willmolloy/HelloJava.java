@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author Will
  */
-class HelloJava {
+final class HelloJava {
   private static final Logger log = LogManager.getLogger();
 
   String hello(String text) {
