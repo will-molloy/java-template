@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for {@link HelloJava}.
  *
- * @author <a href=https://willmolloy.com>Will Molloy</a>
+ * @author Will
  */
 class HelloJavaTest {
 

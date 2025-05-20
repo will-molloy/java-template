@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Example main src.
  *
- * @author <a href=https://willmolloy.com>Will Molloy</a>
+ * @author Will
  */
 class HelloJava {
   private static final Logger log = LogManager.getLogger();
