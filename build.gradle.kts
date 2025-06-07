@@ -119,6 +119,8 @@ allprojects {
     testImplementation(rootProject.libs.mockito.core)
     testImplementation(rootProject.libs.mockito.junit)
 
+    testRuntimeOnly(group = "org.junit.platform", name = "junit-platform-launcher")
+
     configurations.all {
       exclude(group = "org.assertj")
       exclude(group = "junit")
