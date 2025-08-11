@@ -18,7 +18,7 @@ jobs:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -45,7 +45,7 @@ jobs:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -73,7 +73,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -82,7 +82,7 @@ jobs:
         uses: paulhatch/semantic-version@v5.4.0
 
       - name: Create GitHub tag and release
-        uses: softprops/action-gh-release@v2.2.0
+        uses: softprops/action-gh-release@v2.3.2
         with:
           tag_name: ${{ steps.version.outputs.version_tag }}
           generate_release_notes: true
