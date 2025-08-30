@@ -26,10 +26,11 @@ jobs:
           distribution: corretto
           java-version: 21
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Build
-        run: |
-          chmod +x gradlew
-          ./gradlew projects clean build --no-daemon --refresh-dependencies
+        run: ./gradlew build
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -53,10 +54,11 @@ jobs:
           distribution: corretto
           java-version: 21
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Integration test
-        run: |
-          chmod +x gradlew
-          ./gradlew clean integrationTest --no-daemon --refresh-dependencies
+        run: ./gradlew integrationTest
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -75,7 +77,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # needed for version/tag/release
 
       - name: Bump version
         id: version
