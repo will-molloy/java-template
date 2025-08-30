@@ -1,8 +1,9 @@
 name: Dependency Submission
 
 on:
+  pull_request:
   push:
-    branches: [ 'main' ]
+    branches: [ main ]
 
 permissions:
   contents: write
