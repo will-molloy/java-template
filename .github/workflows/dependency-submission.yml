@@ -20,3 +20,5 @@ jobs:
 
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v4
+        with:
+          dependency-graph: 'generate-and-submit'
