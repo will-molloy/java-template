@@ -23,7 +23,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: corretto
+          distribution: temurin
           java-version: 21
 
       - name: Setup Gradle
@@ -51,7 +51,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: corretto
+          distribution: temurin
           java-version: 21
 
       - name: Setup Gradle

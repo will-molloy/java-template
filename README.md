@@ -7,8 +7,8 @@ template repo for Java (or Kotlin/Scala) Gradle projects
 
 ## Features
 
-- JDK 21 ([Amazon Corretto](https://aws.amazon.com/corretto/))
-- [Gradle 8](https://github.com/gradle/gradle) (Kotlin DSL)
+- JDK 21
+- [Gradle 9](https://github.com/gradle/gradle) (Kotlin DSL)
 - [GitHub Actions](https://github.com/features/actions) CI/CD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
   - Java: [`google-java-format`](https://github.com/google/google-java-format)
