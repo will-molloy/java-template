@@ -59,7 +59,7 @@ allprojects {
   // TODO Kotlin/Scala alternative?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
-    toolVersion = "10.12.0"
+    toolVersion = rootProject.libs.versions.checkstyle.get()
     configFile = rootProject.file("./checkstyle.xml")
     configProperties = mapOf("suppressionFile" to rootProject.file("./checkstyle-suppressions.xml"))
     maxErrors = 0
