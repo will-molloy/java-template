@@ -8,7 +8,7 @@ truth = "1.4.4"
 mockito = "5.19.0"
 # langs
 scala = "3.7.1"
-kotlin = "2.1.0"
+kotlin = "2.2.10"
 # plugins
 spotless = "7.2.1"
 checkstyle = "10.12.0"
