@@ -1,27 +1,27 @@
-[plugins]
-spotless = { id = "com.diffplug.spotless", version = "7.2.1" }
-spotbugs = { id = "com.github.spotbugs", version = "6.2.6" }
-buildtimetracker = { id = "com.asarkar.gradle.build-time-tracker", version = "5.0.1" }
-testsets = { id = "org.unbroken-dome.test-sets", version = "4.1.0" }
-
 [versions]
-spotbugs = "4.9.4"
 log4j = "2.25.1"
 guava = "33.4.8-jre"
+spotbugs-annotations = "4.9.4"
 # test libs
-junit = "5.13.4"
+junit = "5.13.3"
 truth = "1.4.4"
 mockito = "5.19.0"
 # langs
-scala = "3.7.2"
-kotlin = "2.1.0"
+scala = "3.7.1"
+kotlin = "2.2.10"
+# plugins
+spotless = "7.2.1"
+checkstyle = "10.12.0"
+spotbugs-plugin = "6.2.5"
+buildtimetracker = "5.0.1"
+testsets = "4.1.0"
 
 [libraries]
-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
 log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
 log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
 log4j-slf4j2 = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs-annotations" }
 # test libs
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
@@ -29,3 +29,9 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 # scala
 scala-library = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+spotbugs = { id = "com.github.spotbugs", version.ref = "spotbugs-plugin" }
+buildtimetracker = { id = "com.asarkar.gradle.build-time-tracker", version.ref = "buildtimetracker" }
+testsets = { id = "org.unbroken-dome.test-sets", version.ref = "testsets" }
