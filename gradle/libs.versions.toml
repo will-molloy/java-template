@@ -1,19 +1,19 @@
 [plugins]
-spotless = { id = "com.diffplug.spotless", version = "7.1.0" }
-spotbugs = { id = "com.github.spotbugs", version = "6.2.1" }
+spotless = { id = "com.diffplug.spotless", version = "7.2.1" }
+spotbugs = { id = "com.github.spotbugs", version = "6.2.6" }
 buildtimetracker = { id = "com.asarkar.gradle.build-time-tracker", version = "5.0.1" }
 testsets = { id = "org.unbroken-dome.test-sets", version = "4.1.0" }
 
 [versions]
-spotbugs = "4.9.3"
-log4j = "2.25.0"
+spotbugs = "4.9.4"
+log4j = "2.25.1"
 guava = "33.4.8-jre"
 # test libs
-junit = "5.13.3"
+junit = "5.13.4"
 truth = "1.4.4"
-mockito = "5.18.0"
+mockito = "5.19.0"
 # langs
-scala = "3.7.1"
+scala = "3.7.2"
 kotlin = "2.1.0"
 
 [libraries]
