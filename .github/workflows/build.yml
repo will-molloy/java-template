@@ -21,7 +21,7 @@ jobs:
       - uses: ./.github/actions/setup-java-gradle
 
       - name: Build and test
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -40,7 +40,7 @@ jobs:
       - uses: ./.github/actions/setup-java-gradle
 
       - name: Integration test
-        run: ./gradlew integrationTest
+        run: ./gradlew integrationTest --no-daemon
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
