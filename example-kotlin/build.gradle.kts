@@ -3,7 +3,7 @@ plugins {
 }
 
 kotlin {
-  jvmToolchain(21)
+  jvmToolchain(25)
 }
 
 // TODO disabling on Kotlin/Scala atm... too many false positives
