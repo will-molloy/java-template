@@ -10,7 +10,7 @@ mockito = "5.19.0"
 scala = "3.7.1"
 kotlin = "2.2.10"
 # plugins
-spotless = "7.2.1"
+spotless = "8.0.0"
 checkstyle = "10.12.0"
 spotbugs-plugin = "6.2.5"
 buildtimetracker = "5.0.1"
