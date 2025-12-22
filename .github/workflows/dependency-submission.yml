@@ -16,10 +16,10 @@ jobs:
   dependency-submission:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-java-gradle
 
       - name: Generate and submit dependency graph
-        uses: gradle/actions/dependency-submission@v4
+        uses: gradle/actions/dependency-submission@v5
         with:
           dependency-graph: 'generate-and-submit'
