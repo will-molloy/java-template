@@ -7,7 +7,7 @@ template repo for Java (or Kotlin/Scala) Gradle projects
 
 ## Features
 
-- JDK 21
+- JDK 25
 - [Gradle 9](https://github.com/gradle/gradle) (Kotlin DSL)
 - [GitHub Actions](https://github.com/features/actions) CI/CD
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
