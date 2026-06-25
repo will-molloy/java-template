@@ -3,7 +3,7 @@
 [![build](https://github.com/will-molloy/java-template/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/will-molloy/java-template/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/will-molloy/java-template/branch/main/graph/badge.svg)](https://codecov.io/gh/will-molloy/java-template)
 
-template repo for Java (or Kotlin/Scala) Gradle projects
+template repo for Java/Kotlin Gradle projects
 
 ## Features
 
@@ -13,7 +13,6 @@ template repo for Java (or Kotlin/Scala) Gradle projects
 - Automatic code formatting via [Spotless](https://github.com/diffplug/spotless)
   - Java: [`google-java-format`](https://github.com/google/google-java-format)
   - Kotlin: [`ktfmt`](https://github.com/facebook/ktfmt)
-  - Scala: [`scalafmt`](https://github.com/scalameta/scalafmt)
 - Code style analysis via [Checkstyle](https://github.com/checkstyle/checkstyle)
 - Static analysis via [SpotBugs](https://spotbugs.github.io/)
 - Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
