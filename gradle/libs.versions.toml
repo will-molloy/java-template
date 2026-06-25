@@ -7,7 +7,6 @@ junit = "6.0.2"
 truth = "1.4.5"
 mockito = "5.21.0"
 # langs
-scala = "3.7.4"
 kotlin = "2.3.0"
 # plugins
 spotless = "8.1.0"
@@ -27,8 +26,6 @@ junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
-# scala
-scala-library = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

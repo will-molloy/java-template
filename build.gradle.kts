@@ -48,15 +48,9 @@ allprojects {
       trimTrailingWhitespace()
       endWithNewline()
     }
-    // https://github.com/diffplug/spotless/tree/main/plugin-gradle#scala
-    scala {
-      scalafmt().configFile("$rootDir/scalafmt.conf")
-      trimTrailingWhitespace()
-      endWithNewline()
-    }
   }
 
-  // TODO Kotlin/Scala alternative?
+  // TODO Kotlin alternative?
   apply(plugin = "checkstyle")
   configure<CheckstyleExtension> {
     toolVersion = rootProject.libs.versions.checkstyle.get()
