@@ -17,14 +17,14 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-java-gradle
 
       - name: Build and test
         run: ./gradlew build --no-daemon
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           flags: unit-tests-${{ matrix.os }}
           fail_ci_if_error: true
@@ -36,14 +36,14 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-java-gradle
 
       - name: Integration test
         run: ./gradlew integrationTest --no-daemon
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           flags: integration-tests-${{ matrix.os }}
           fail_ci_if_error: true
@@ -56,19 +56,19 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # needed for version/tag/release
 
       - name: Bump version
         id: version
-        uses: paulhatch/semantic-version@v5.4.0
+        uses: paulhatch/semantic-version@v6.0.2
         with:
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
 
       - name: Create GitHub tag and release
-        uses: softprops/action-gh-release@v2.5.0
+        uses: softprops/action-gh-release@v3.0.1
         with:
           tag_name: ${{ steps.version.outputs.version_tag }}
           generate_release_notes: true
