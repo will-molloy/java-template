@@ -52,7 +52,7 @@ jobs:
   release:
     needs: [ build, integration-test ]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: write
     steps:
@@ -63,9 +63,6 @@ jobs:
       - name: Bump version
         id: version
         uses: paulhatch/semantic-version@v6.0.2
-        with:
-          major_pattern: "(MAJOR)"
-          minor_pattern: "(MINOR)"
 
       - name: Create GitHub tag and release
         uses: softprops/action-gh-release@v3.0.1
