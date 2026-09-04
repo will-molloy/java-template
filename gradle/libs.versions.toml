@@ -1,17 +1,17 @@
 [versions]
 log4j = "2.26.1"
-guava = "33.6.0-jre"
-spotbugs-annotations = "4.10.3"
+guava = "33.7.1-jre"
+spotbugs-annotations = "4.10.4"
 # test libs
-junit = "6.1.2"
+junit = "6.1.3"
 truth = "1.4.5"
 mockito = "5.23.0"
 # langs
 kotlin = "2.4.10"
 # plugins
-spotless = "8.8.0"
+spotless = "8.10.2"
 checkstyle = "10.12.0"
-spotbugs-plugin = "6.5.9"
+spotbugs-plugin = "6.5.11"
 buildtimetracker = "5.0.2"
 testsets = "4.1.0"
 
