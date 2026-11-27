@@ -25,8 +25,9 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          filter: blob:none
-          sparse-checkout: .github
+          filter: tree:0
+          sparse-checkout: .github/
+          sparse-checkout-cone-mode: false
 
       - name: Install commitlint
         run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
