@@ -11,24 +11,42 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' && github.event.action != 'edited' }}
 
+env:
+  # renovate: datasource=npm depName=@commitlint/cli
+  COMMITLINT_VERSION: 21.2.4
+
 jobs:
   check-commits:
     if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.action != 'edited'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: read
-      pull-requests: read
     steps:
       - uses: actions/checkout@v7
-      - uses: wagoid/commitlint-github-action@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: .github
+
+      - name: Install commitlint
+        run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
+
+      - name: Check commits
+        env:
+          FROM: ${{ github.event.pull_request.base.sha || github.event.before }}
+          TO: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: npx commitlint --extends @commitlint/config-conventional --from "$FROM" --to "$TO" --verbose
 
   # Squash merges use the PR title as the commit message
   check-pr-title:
     if: github.event_name == 'pull_request' && github.event.action != 'synchronize'
     runs-on: ubuntu-slim
-    permissions:
-      pull-requests: read
+    permissions: {}
     steps:
-      - uses: amannn/action-semantic-pull-request@v6
+      - name: Install commitlint
+        run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
+
+      - name: Check PR title
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$TITLE" | npx commitlint --extends @commitlint/config-conventional --verbose
