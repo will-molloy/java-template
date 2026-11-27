@@ -1,5 +1,5 @@
-name: conventional-commits
-run-name: conventional-commits by @${{ github.actor }}
+name: commitlint
+run-name: commitlint by @${{ github.actor }}
 
 on:
   pull_request:
@@ -12,16 +12,6 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  check-pr-title:
-    if: github.event_name == 'pull_request' && github.event.action != 'synchronize'
-    runs-on: ubuntu-slim
-    permissions:
-      pull-requests: read
-    steps:
-      - uses: amannn/action-semantic-pull-request@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   check-commits:
     if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.action != 'edited'
     runs-on: ubuntu-latest
@@ -31,3 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: wagoid/commitlint-github-action@v6
+
+  # Squash merges use the PR title as the commit message
+  check-pr-title:
+    if: github.event_name == 'pull_request' && github.event.action != 'synchronize'
+    runs-on: ubuntu-slim
+    permissions:
+      pull-requests: read
+    steps:
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
