@@ -31,7 +31,7 @@ jobs:
       - name: Install commitlint
         run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
 
-      - name: Lint commits
+      - name: Check commits
         env:
           FROM: ${{ github.event.pull_request.base.sha || github.event.before }}
           TO: ${{ github.event.pull_request.head.sha || github.sha }}
@@ -46,7 +46,7 @@ jobs:
       - name: Install commitlint
         run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
 
-      - name: Lint PR title
+      - name: Check PR title
         env:
           TITLE: ${{ github.event.pull_request.title }}
         run: printf '%s\n' "$TITLE" | npx commitlint --extends @commitlint/config-conventional --verbose
