@@ -11,6 +11,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' && github.event.action != 'edited' }}
 
+env:
+  # renovate: datasource=npm depName=@commitlint/cli
+  COMMITLINT_VERSION: 21.2.4
+
 jobs:
   check-commits:
     if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.action != 'edited'
@@ -21,21 +25,28 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: ./.github/actions/commitlint
-        with:
-          from: ${{ github.event.pull_request.base.sha || github.event.before }}
-          to: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: .github
+
+      - name: Install commitlint
+        run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
+
+      - name: Lint commits
+        env:
+          FROM: ${{ github.event.pull_request.base.sha || github.event.before }}
+          TO: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: npx commitlint --extends @commitlint/config-conventional --from "$FROM" --to "$TO" --verbose
 
   # Squash merges use the PR title as the commit message
   check-pr-title:
     if: github.event_name == 'pull_request' && github.event.action != 'synchronize'
     runs-on: ubuntu-slim
-    permissions:
-      contents: read
+    permissions: {}
     steps:
-      - uses: actions/checkout@v7
-        with:
-          sparse-checkout: .github/actions
-      - uses: ./.github/actions/commitlint
-        with:
-          message: ${{ github.event.pull_request.title }}
+      - name: Install commitlint
+        run: npm install --no-save @commitlint/cli@$COMMITLINT_VERSION @commitlint/config-conventional@$COMMITLINT_VERSION
+
+      - name: Lint PR title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$TITLE" | npx commitlint --extends @commitlint/config-conventional --verbose

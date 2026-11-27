@@ -34,8 +34,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "versions in workflows and actions tagged with a `# renovate:` comment",
-      "managerFilePatterns": ["/^\\.github/(workflows|actions)/.+\\.ya?ml$/"],
+      "description": "versions in workflows tagged with a `# renovate:` comment",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s+\\w+: (?<currentValue>\\S+)"
       ]
