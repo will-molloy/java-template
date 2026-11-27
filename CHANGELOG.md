@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.5](https://github.com/will-molloy/java-template/compare/v1.2.4...v1.2.5) (2026-11-27)
+
+
+### 👷 CI
+
+* run commitlint directly and type renovate PRs as chore(deps) ([#280](https://github.com/will-molloy/java-template/issues/280)) ([143943c](https://github.com/will-molloy/java-template/commit/143943cac84ff55f3aa7dafb94b25400702f43e7))
+* switch releases to release-please ([#278](https://github.com/will-molloy/java-template/issues/278)) ([7cd5164](https://github.com/will-molloy/java-template/commit/7cd5164579ba7cdb5d3a51ea88cdc0e19ef73a5e))
+
+
+### 🔧 Miscellaneous
+
+* **deps:** update actions/setup-java action to v6 ([#274](https://github.com/will-molloy/java-template/issues/274)) ([194707c](https://github.com/will-molloy/java-template/commit/194707c39cebda0b8d196370c654c1358d73d9ec))
+* **deps:** update gradle to v9.9.2 ([#275](https://github.com/will-molloy/java-template/issues/275)) ([cff18a0](https://github.com/will-molloy/java-template/commit/cff18a0e4ea957d9ebf268c84aea6e8ab2afeb13))
+* **deps:** update java dependencies ([#273](https://github.com/will-molloy/java-template/issues/273)) ([5d117e6](https://github.com/will-molloy/java-template/commit/5d117e66e7cd2d12b9cb2aab32c6c557ba73e62e))
+
 ## [1.2.4](https://github.com/will-molloy/java-template/compare/v1.2.3...v1.2.4) (2026-07-25)
 
 ### 👷 CI
