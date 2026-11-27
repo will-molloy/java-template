@@ -18,12 +18,14 @@ template repo for Java/Kotlin Gradle projects
 - Unit and integration test support via [JUnit 5](https://junit.org/junit5/) and [TestSets plugin](https://github.com/unbroken-dome/gradle-testsets-plugin)
 - Code coverage reporting via [Codecov](https://codecov.io/)
 - Dependency upgrades via [Renovate bot](https://renovatebot.com)
+- Releases and changelog via [release-please](https://github.com/googleapis/release-please)
 
 ## Usage
 
 - Click [Use this template](https://github.com/will-molloy/java-template/generate)
   - This will prompt you to create a new repo with all the files setup
 - Rename the root project (currently `java-template`) and group (currently `com.willmolloy`) to your liking
+- Reset releases: delete `CHANGELOG.md`, set `version.txt` and `.release-please-manifest.json` to `0.0.0`
 - Delete anything you won't use
 - Update the README
 - Other non-code setup like GitHub branch protections

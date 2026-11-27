@@ -18,6 +18,7 @@ plugins {
 
 allprojects {
   group = "com.willmolloy"
+  version = rootProject.file("version.txt").readText().trim()
   repositories {
     mavenCentral()
   }
