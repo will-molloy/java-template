@@ -55,17 +55,9 @@ jobs:
     runs-on: ubuntu-slim
     permissions:
       contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0 # needed for version/tag/release
-
-      - name: Bump version
-        id: version
-        uses: paulhatch/semantic-version@v6.0.2
-
-      - name: Create GitHub tag and release
-        uses: softprops/action-gh-release@v3.0.1
-        with:
-          tag_name: ${{ steps.version.outputs.version_tag }}
-          generate_release_notes: true
+      # Opens or updates the release PR, and tags and releases once it merges.
+      # PRs opened by GITHUB_TOKEN don't trigger CI, so close and reopen the release PR to run checks.
+      - name: Release
+        uses: googleapis/release-please-action@v5.0.0
