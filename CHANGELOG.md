@@ -2,7 +2,9 @@
 
 ## [1.2.4](https://github.com/will-molloy/java-template/compare/v1.2.3...v1.2.4) (2026-07-25)
 
-* ci: switch to conventional commits for versioning ([#272](https://github.com/will-molloy/java-template/pull/272)) ([169de27](https://github.com/will-molloy/java-template/commit/169de278f1d51801ffa0e3641b7788a05cf152e4))
+### 👷 CI
+
+* switch to conventional commits for versioning ([#272](https://github.com/will-molloy/java-template/pull/272)) ([169de27](https://github.com/will-molloy/java-template/commit/169de278f1d51801ffa0e3641b7788a05cf152e4))
 
 ## [1.2.3](https://github.com/will-molloy/java-template/compare/v1.2.2...v1.2.3) (2026-07-19)
 
