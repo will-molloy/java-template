@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.6](https://github.com/will-molloy/java-template/compare/v1.2.5...v1.2.6) (2026-11-27)
+
+
+### 👷 CI
+
+* fetch only commit history in check-commits ([#281](https://github.com/will-molloy/java-template/issues/281)) ([33f1164](https://github.com/will-molloy/java-template/commit/33f116487e1fda2ed54d17be57695cb30e623507))
+
+
+### 🔧 Miscellaneous
+
+* add renovate minimum release age and regenerate gradle wrapper ([#283](https://github.com/will-molloy/java-template/issues/283)) ([dce0afd](https://github.com/will-molloy/java-template/commit/dce0afdbcb0b16b346d5fb8aac99054bd74181e4))
+
 ## [1.2.5](https://github.com/will-molloy/java-template/compare/v1.2.4...v1.2.5) (2026-11-27)
 
 
