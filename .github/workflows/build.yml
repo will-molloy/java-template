@@ -57,7 +57,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      # Opens or updates the release PR, and tags and releases once it merges.
+      # Opens or updates the release PR, and releases it once it's merged.
       # PRs opened by GITHUB_TOKEN don't trigger CI, so close and reopen the release PR to run checks.
       - name: Release
         uses: googleapis/release-please-action@v5.0.0
