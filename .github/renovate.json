@@ -2,8 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":semanticCommits",
-    "schedule:monthly"
+    "schedule:monthly",
+    ":semanticCommits"
   ],
   "ignorePresets": [":semanticPrefixFixDepsChoreOthers"],
   "labels": ["dependencies"],
